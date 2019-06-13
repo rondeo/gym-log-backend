@@ -48,6 +48,7 @@
     "karma-jasmine-html-reporter": "^0.2.2",
     "mongoose": "^5.4.19",
     "mongoose-unique-validator": "^2.0.2",
+    "node-gyp": "^4.0.0",
     "nodemon": "^1.18.3",
     "passport": "*",
     "passport-jwt": "*",
