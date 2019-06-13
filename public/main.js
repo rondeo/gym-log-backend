@@ -562,9 +562,6 @@ var AuthService = /** @class */ (function () {
             expirationDate: new Date(expirationDate)
         };
     };
-    AuthService.prototype.ngOnDestroy = function () {
-        this.authStatusListener.unsubscribe();
-    };
     AuthService = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({ providedIn: 'root' }),
         __metadata("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_0__["HttpClient"], _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"]])
@@ -1454,9 +1451,6 @@ var LogRoutineService = /** @class */ (function () {
             //this.savedRoutinesUpdated.next([...this.savedRoutines]);
         });
     };
-    LogRoutineService.prototype.ngOnDestroy = function () {
-        this.savedRoutinesUpdated.unsubscribe();
-    };
     LogRoutineService = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_3__["Injectable"])({ providedIn: 'root' }),
         __metadata("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"]])
@@ -1531,9 +1525,6 @@ var RoutineService = /** @class */ (function () {
             _this.routines = updatedRoutines;
             _this.routinesUpdated.next(_this.routines.slice());
         });
-    };
-    RoutineService.prototype.ngOnDestroy = function () {
-        this.routinesUpdated.unsubscribe();
     };
     RoutineService = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({ providedIn: 'root' }),
