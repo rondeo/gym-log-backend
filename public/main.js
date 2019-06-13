@@ -62,7 +62,7 @@ module.exports = "<div class=\"main\" *ngIf=\"currentRoutine; else notShow\">\n 
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"nav-container\">\r\n\r\n  <div [ngClass]=\"showClasses\" class=\"menu-btn\" (click)=\"toggleMenu()\">\r\n    <div class=\"btn-line\"></div>\r\n    <div class=\"btn-line\"></div>\r\n    <div class=\"btn-line\"></div>\r\n  </div>\r\n\r\n  <nav [ngClass]=\"showClasses\" class=\"menu-dropdown-container\" (click)=\"toggleMenu()\">\r\n\r\n    <div [ngClass]=\"showClasses\" class=\"menu-branding\" (click)=\"toggleMenu()\">\r\n      <div [ngClass]=\"showClasses\" class=\"user-name\" (click)=\"toggleMenu()\">USER NAME</div>\r\n      <div [ngClass]=\"showClasses\" class=\"portrait\" (click)=\"toggleMenu()\"></div>\r\n      <div [ngClass]=\"showClasses\" class=\"log-out\" (click)=\"onLogout()\">Logout</div>\r\n    </div>\r\n\r\n    <ul class=\"nav-menu\" (click)=\"toggleMenu()\">\r\n      <li [ngClass]=\"showClasses\" class=\"nav-menu-item\"><a routerLink=\"/workout-history\" (click)=\"toggleMenu()\">Home</a></li>\r\n      <li [ngClass]=\"showClasses\" class=\"nav-menu-item\"><a routerLink=\"/routines\" (click)=\"toggleMenu()\">Routines</a></li>\r\n      <li [ngClass]=\"showClasses\" class=\"nav-menu-item\"><a routerLink=\"/create-routine\" (click)=\"toggleMenu()\">Add Routine</a></li>\r\n      <li [ngClass]=\"showClasses\" class=\"nav-menu-item\"><a routerLink=\"/log-workout\" (click)=\"onLogout()\">Log Workout</a></li>\r\n    </ul>\r\n\r\n  </nav>\r\n\r\n</div>"
+module.exports = "<div class=\"nav-container\">\r\n\r\n  <div [ngClass]=\"showClasses\" class=\"menu-btn\" (click)=\"toggleMenu()\">\r\n    <div class=\"btn-line\"></div>\r\n    <div class=\"btn-line\"></div>\r\n    <div class=\"btn-line\"></div>\r\n  </div>\r\n\r\n  <nav [ngClass]=\"showClasses\" class=\"menu-dropdown-container\" (click)=\"toggleMenu()\">\r\n\r\n    <div [ngClass]=\"showClasses\" class=\"menu-branding\" (click)=\"toggleMenu()\">\r\n      <div [ngClass]=\"showClasses\" class=\"user-name\" (click)=\"toggleMenu()\">USER NAME</div>\r\n      <div [ngClass]=\"showClasses\" class=\"portrait\" (click)=\"toggleMenu()\"></div>\r\n      <div [ngClass]=\"showClasses\" class=\"log-out\" (click)=\"onLogout()\">Logout</div>\r\n    </div>\r\n\r\n    <ul class=\"nav-menu\" (click)=\"toggleMenu()\">\r\n      <li [ngClass]=\"showClasses\" class=\"nav-menu-item\"><a routerLink=\"/workout-history\" (click)=\"toggleMenu()\">Home</a></li>\r\n      <li [ngClass]=\"showClasses\" class=\"nav-menu-item\"><a routerLink=\"/routines\" (click)=\"toggleMenu()\">Routines</a></li>\r\n      <li [ngClass]=\"showClasses\" class=\"nav-menu-item\"><a routerLink=\"/create-routine\" (click)=\"toggleMenu()\">Add Routine</a></li>\r\n      <li [ngClass]=\"showClasses\" class=\"nav-menu-item\"><a routerLink=\"/log-workout\" (click)=\"toggleMenu()\">Log Workout</a></li>\r\n    </ul>\r\n\r\n  </nav>\r\n\r\n</div>"
 
 /***/ }),
 
@@ -1049,9 +1049,6 @@ var LogWorkOutComponent = /** @class */ (function () {
                 }
             });
         });
-    };
-    LogWorkOutComponent.prototype.ngOnDestroy = function () {
-        this.routinesSub.unsubscribe();
     };
     LogWorkOutComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
