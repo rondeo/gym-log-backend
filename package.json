@@ -30,6 +30,7 @@
     "popper": "^1.0.1",
     "protractor": "^5.4.1",
     "rxjs": "^6.0.0",
+    "touch": "^3.1.0",
     "ts-node": "~5.0.1",
     "tslint": "~5.9.1",
     "typescript": "3.1.6",
