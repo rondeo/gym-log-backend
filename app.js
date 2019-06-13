@@ -15,13 +15,13 @@ const Workout = require('./models/workouts');
 const port = process.env.PORT || 8080;
 
 //CONNECTING TO DATABASE - 20:00 of video 1
-/*mongoose.connect("mongodb+srv://ayodlo:PhNrB6JXfsRIhFGw@cluster0-0hpwg.mongodb.net/test?retryWrites=true&w=majority", { useNewUrlParser: true })
+mongoose.connect("mongodb+srv://ayodlo:PhNrB6JXfsRIhFGw@cluster0-0hpwg.mongodb.net/test?retryWrites=true&w=majority", { useNewUrlParser: true })
   .then(() => {
 	  console.log('Connected to database!')
   })
   .catch((error) => {
 	  console.log(error);
-  });*/
+  });
 
 //CORS MIDDLEWARE
 app.use(cors());
