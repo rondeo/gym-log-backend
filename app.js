@@ -39,6 +39,7 @@ app.listen(port, () => {
 
 //GET ROUTINES
 app.get("/api/routines", (req, res, next) => {
+	console.log(req);
 	Routine.find({creator: req.userData.userId})
 	  .then(documents => {
 		  res.status(200).json({
@@ -136,6 +137,7 @@ app.post("/api/signup", (req, res, next) => {
 	let fetchedUser;
 	User.findOne({ email: req.body.email })
 	  .then( user => {
+		  console.log(user);
 		if (!user) {
 		  console.log("Error 2 - !user");
 		  return res.status(401).json({
