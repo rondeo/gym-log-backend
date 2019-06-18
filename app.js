@@ -7,6 +7,7 @@ const cors = require('cors');
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
+const checkAuth = require("./middleware/check-auth");
 const User = require("./models/user");
 const Routine = require('./models/routine');
 const Workout = require('./models/workouts');
@@ -38,8 +39,7 @@ app.listen(port, () => {
 });
 
 //GET ROUTINES
-app.get("/api/routines", (req, res, next) => {
-	console.log(req);
+app.get("/api/routines", checkAuth, (req, res, next) => {
 	Routine.find({creator: req.userData.userId})
 	  .then(documents => {
 		  res.status(200).json({
@@ -50,7 +50,7 @@ app.get("/api/routines", (req, res, next) => {
 });
 
 //SAVE ROUTINES
-app.post("/api/routines", (req, res, next) => {
+app.post("/api/routines", checkAuth, (req, res, next) => {
 	const workout = new Routine({
 	  name: req.body.name,
 	  exercises: req.body.exercises,
@@ -58,23 +58,21 @@ app.post("/api/routines", (req, res, next) => {
     creator: req.userData.userId
 	});
 	workout.save();
-	console.log(workout);
 	res.status(201).json({
 		message:'Workout post added successfully'
 	});
 })
 
 //DELETE ROUTINES
-app.delete("/api/routines/:id", (req, res, next) => {
+app.delete("/api/routines/:id", checkAuth, (req, res, next) => {
 	Routine.deleteOne({_id: req.params.id, creator: req.userData.userId}).then(result => {
-		console.log(result);
 		res.status(200).json({message: "Post deleted!"});
 	})
 
 })
 
 //GET WORKOUTS
-app.get("/api/workouts", (req, res, next) => {
+app.get("/api/workouts", checkAuth, (req, res, next) => {
 	Workout.find()
 	  .then(documents => {
 		  res.status(200).json({
@@ -85,8 +83,7 @@ app.get("/api/workouts", (req, res, next) => {
 });
 
 //SAVE WORKOUTS
-app.post("/api/workouts", (req, res, next) => {
-	console.log(req.body);
+app.post("/api/workouts", checkAuth, (req, res, next) => {
 	const workout = new Workout({
 	  name: req.body.name,
 	  date: req.body.date,
@@ -94,23 +91,19 @@ app.post("/api/workouts", (req, res, next) => {
 	  exercises: req.body.exercises
 	});
 	workout.save();
-	//console.log(workout.exercises[0]);
-	//console.log(workout.date);
-	//console.log(workout.name);
-	//console.log(workout.icon);
 	res.status(201).json({
 		message:'Saved Workout added successfully'
 	});
 })
 
 //DELETE WORKOUTS
-app.delete("/api/workouts/:id", (req, res, next) => {
+app.delete("/api/workouts/:id", checkAuth, (req, res, next) => {
 	Workout.deleteOne({_id: req.params.id}).then(result => {
-		console.log(result);
 		res.status(200).json({message: "Workout deleted!"});
 	})
 });
 
+//SIGNUP
 app.post("/api/signup", (req, res, next) => {
 	bcrypt.hash(req.body.password, 10)
 	  .then(hash => {
@@ -133,13 +126,12 @@ app.post("/api/signup", (req, res, next) => {
 	  });
   });
   
+  //SIGNIN
   app.post("/api/signin", (req, res, next) => {
 	let fetchedUser;
 	User.findOne({ email: req.body.email })
 	  .then( user => {
-		  console.log(user);
 		if (!user) {
-		  console.log("Error 2 - !user");
 		  return res.status(401).json({
 			message: "Auth Failed"
 		  })
@@ -149,7 +141,6 @@ app.post("/api/signup", (req, res, next) => {
 	  })
 	  .then(result => {
 		if (!result) {
-		  console.log("Error 3 - !result");
 		  return res.status(401).json({
 			message: "Auth failed"
 		  })
@@ -157,12 +148,10 @@ app.post("/api/signup", (req, res, next) => {
 		const token = jwt.sign({email: fetchedUser.email, userId: fetchedUser._id}, 'secret_this_should_be_longer', {expiresIn: '1h'});
 		res.status(200).json({
 		  token: token,
-		  expiresIn: 3600,
-		  message: "Auth Accepted!"
+		  expiresIn: 3600
 		});
 	  })
 	  .catch(err => {
-		console.log("Error 4");
 		return res.status(401).json({
 		  message: "Auth failed"
 		})
