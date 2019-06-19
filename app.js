@@ -12,6 +12,36 @@ const User = require("./models/user");
 const Routine = require('./models/routine');
 const Workout = require('./models/workouts');
 
+//CONFIGURING MULTER
+const multer = require("multer");
+
+const storage = multer.diskStorage({
+	destination: function(req, file, cb) {
+		cb(null, 'uploads/');
+	},
+	filename: function(req, file, cb) {
+		cb(null, file.originalname);
+	}
+});
+
+//REJECT A FILE
+const fileFilter = (req, file, cb) => {
+	if (file.mimetype === 'image/jpeg' || file.mimetype === 'image/png') {
+		cb(null, true);
+	} else {
+		cb(null, false);
+	}
+};
+
+//SETTING OUR MULTER UPLOAD
+const upload = multer({
+	storage: storage,
+	limits: {
+	fileSize: 1024 * 1024 * 5
+	},
+	fileFilter
+});
+
 //DEFINING PORT NUMBER
 const port = process.env.PORT || 8080;
 
@@ -29,6 +59,7 @@ app.use(cors());
 
 //SET STATIC FOLDER
 app.use(express.static(path.join(__dirname, 'public')));
+app.use('/uploads', express.static('uploads'));
 
 //PARSING THE BODY
 app.use(bodyParser.json());
@@ -103,13 +134,44 @@ app.delete("/api/workouts/:id", checkAuth, (req, res, next) => {
 	})
 });
 
+//UPLOAD AVATAR - argument for upload.single() ...('myAvatar') in this case... needs to match the name of the key for the file we append on the front end... see nav-bar.component.ts // the req.file means we are requesting a filetype of .file 
+app.post("/api/avatar", checkAuth, upload.single('myAvatar'), (req, res, next) => {
+	let oldAvatar;
+	User.findOne({email: req.userData.email})
+	.then( user => {
+		oldAvatar = user.avatar;
+		return oldAvatar;
+	})
+	.then ( currentAvatar => {
+		User.findOneAndUpdate({avatar: currentAvatar}, {avatar: req.file.path})
+		.then( result => {
+			res.status(201).json({
+			message:'Avatar uploaded successfully'
+			});
+		});
+	});
+});
+
+//GET AVATAR
+app.get("/api/avatar", checkAuth, (req, res, next) => {
+	console.log('Getting avatar...')
+	User.findOne({email: req.userData.email})
+	  .then(user => {
+		  res.status(200).json({
+			  message: "Saved Workouts fetched successfully!",
+			  avatar: user.avatar
+		  })
+	  });
+});
+
 //SIGNUP
 app.post("/api/signup", (req, res, next) => {
 	bcrypt.hash(req.body.password, 10)
 	  .then(hash => {
 		const user = new User ({
 		  email: req.body.email,
-		  password: hash
+		  password: hash,
+		  avatar: "https://images.app.goo.gl/mz2v9iemPun3UcdT7"
 		});
 		user.save()
 		  .then(result => {

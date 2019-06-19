@@ -62,7 +62,7 @@ module.exports = "<div class=\"main\" *ngIf=\"currentRoutine; else notShow\">\n 
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"nav-container\">\r\n\r\n  <div [ngClass]=\"showClasses\" class=\"menu-btn\" (click)=\"toggleMenu()\">\r\n    <div class=\"btn-line\"></div>\r\n    <div class=\"btn-line\"></div>\r\n    <div class=\"btn-line\"></div>\r\n  </div>\r\n\r\n  <nav [ngClass]=\"showClasses\" class=\"menu-dropdown-container\" (click)=\"toggleMenu()\">\r\n\r\n    <div [ngClass]=\"showClasses\" class=\"menu-branding\" (click)=\"toggleMenu()\">\r\n      <div [ngClass]=\"showClasses\" class=\"user-name\" (click)=\"toggleMenu()\">USER NAME</div>\r\n      <div [ngClass]=\"showClasses\" class=\"portrait\" (click)=\"toggleMenu()\"></div>\r\n      <div [ngClass]=\"showClasses\" class=\"log-out\" (click)=\"onLogout()\">Logout</div>\r\n    </div>\r\n\r\n    <ul class=\"nav-menu\" (click)=\"toggleMenu()\">\r\n      <li [ngClass]=\"showClasses\" class=\"nav-menu-item\"><a routerLink=\"/workout-history\" (click)=\"toggleMenu()\">Home</a></li>\r\n      <li [ngClass]=\"showClasses\" class=\"nav-menu-item\"><a routerLink=\"/routines\" (click)=\"toggleMenu()\">Routines</a></li>\r\n      <li [ngClass]=\"showClasses\" class=\"nav-menu-item\"><a routerLink=\"/create-routine\" (click)=\"toggleMenu()\">Add Routine</a></li>\r\n      <li [ngClass]=\"showClasses\" class=\"nav-menu-item\"><a routerLink=\"/log-workout\" (click)=\"toggleMenu()\">Log Workout</a></li>\r\n    </ul>\r\n\r\n  </nav>\r\n\r\n</div>"
+module.exports = "<div class=\"nav-container\">\r\n\r\n  <div [ngClass]=\"showClasses\" class=\"menu-btn\" (click)=\"toggleMenu()\">\r\n    <div class=\"btn-line\"></div>\r\n    <div class=\"btn-line\"></div>\r\n    <div class=\"btn-line\"></div>\r\n  </div>\r\n\r\n  <nav [ngClass]=\"showClasses\" class=\"menu-dropdown-container\" (click)=\"toggleMenu()\">\r\n\r\n    <div [ngClass]=\"showClasses\" class=\"menu-branding\" (click)=\"toggleMenu()\">\r\n      <div [ngClass]=\"showClasses\" class=\"user-name\" (click)=\"toggleMenu()\">USER NAME</div>\r\n      <label [ngClass]=\"showClasses\" *ngIf=\"avatar\" [style.background]=\"'url(/uploads/' + avatar + ')'\" class=\"portrait\">\r\n          <input [ngClass]=\"showClasses\" *ngIf=\"avatar\" [style.background]=\"'url(/uploads/' + avatar + ')'\" type=\"file\" (change)=\"onFileSelected($event)\" class=\"portrait\">\r\n      </label>\r\n      <div [ngClass]=\"showClasses\" class=\"log-out\" (click)=\"onLogout()\">Logout</div>\r\n    </div>\r\n\r\n    <ul class=\"nav-menu\" (click)=\"toggleMenu()\">\r\n      <li [ngClass]=\"showClasses\" class=\"nav-menu-item\"><a routerLink=\"/workout-history\" (click)=\"toggleMenu()\">Home</a></li>\r\n      <li [ngClass]=\"showClasses\" class=\"nav-menu-item\"><a routerLink=\"/routines\" (click)=\"toggleMenu()\">Routines</a></li>\r\n      <li [ngClass]=\"showClasses\" class=\"nav-menu-item\"><a routerLink=\"/create-routine\" (click)=\"toggleMenu()\">Add Routine</a></li>\r\n      <li [ngClass]=\"showClasses\" class=\"nav-menu-item\"><a routerLink=\"/log-workout\" (click)=\"toggleMenu()\">Log Workout</a></li>\r\n    </ul>\r\n\r\n  </nav>\r\n\r\n</div>"
 
 /***/ }),
 
@@ -527,6 +527,7 @@ var AuthService = /** @class */ (function () {
                         _b.isAuthenticated = _c.sent();
                         this.authStatusListener.next(false);
                         clearTimeout(this.tokenTimer);
+                        this.router.navigate(['/signin']);
                         return [2 /*return*/];
                 }
             });
@@ -1117,7 +1118,7 @@ var LogWorkOutComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".nav-container {\r\n  width:100vh;\r\n  height: 4rem;\r\n  position: fixed;\r\n  top: 0;\r\n  right: 0;\r\n  background: black;\r\n}\r\n\r\n.menu-btn {\r\n  position: absolute;\r\n  top: 50%;\r\n  right: 16px;\r\n  -webkit-transform: translate(-50%, -50%);\r\n          transform: translate(-50%, -50%);\r\n  z-index: 5;\r\n  cursor: pointer;\r\n}\r\n\r\n.btn-line {\r\n  width: 28px;\r\n  height: 3px;\r\n  margin: 0 0 5px 0;\r\n  background: rgb(193,193,193);\r\n  transition: background 1500ms;\r\n}\r\n\r\ndiv.show div.btn-line {\r\n  background: black;\r\n}\r\n\r\n.menu-dropdown-container {\r\n  position: absolute;\r\n  top: 0;\r\n  width: 100%;\r\n  opacity: 0.95;\r\n  visibility: hidden;\r\n  transition: visibility 550ms;\r\n}\r\n\r\n.show {\r\n  visibility: visible;\r\n}\r\n\r\n.nav-menu, .menu-branding  {\r\n  position: fixed;\r\n  display: flex;\r\n  flex-direction: column;\r\n  flex-wrap: wrap;\r\n  align-items: center;\r\n  justify-content: center;\r\n  width: 50vw;\r\n  height: 100vh;\r\n  overflow: hidden;\r\n  margin: 0;\r\n  padding: 0;\r\n  background: rgba(255, 255, 255, .8);\r\n  list-style: none;\r\n  transition: -webkit-transform 500ms;\r\n  transition: transform 500ms;\r\n  transition: transform 500ms, -webkit-transform 500ms;\r\n}\r\n\r\n.nav-menu {\r\n  right: 0;\r\n  -webkit-transform: translate3d(0, -100%, 0);\r\n          transform: translate3d(0, -100%, 0);\r\n}\r\n\r\n.menu-branding {\r\n  left: 0;\r\n  -webkit-transform: translate3d(0, 100%, 0);\r\n          transform: translate3d(0, 100%, 0);\r\n}\r\n\r\nnav.show div.menu-branding,\r\nnav.show ul.nav-menu {\r\n  -webkit-transform: translate3d(0, 0, 0);\r\n          transform: translate3d(0, 0, 0);\r\n}\r\n\r\n.portrait {\r\n  height: 100px;\r\n  width: 100px;\r\n  background: url('ayodlo.jpg');\r\n  background-position: center center;\r\n  background-size: cover;\r\n  border-radius: 50%;\r\n  border: solid 3px black;\r\n}\r\n\r\n.nav-menu-item a,\r\n.log-out,\r\n.user-name,\r\n.portrait {\r\n  text-transform: uppercase;\r\n  color: black;\r\n  cursor: pointer;\r\n  display: inline-block;\r\n  transition: 300ms;\r\n  margin: .4rem 0;\r\n}\r\n\r\n.nav-menu-item a:hover,\r\n.log-out:hover,\r\n.user-name:hover,\r\n.portrait:hover {\r\n  color: rgb(244,67,54);\r\n  border-color:rgb(244,67,54);\r\n  text-decoration: none;\r\n}\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImFwcC9uYXYtYmFyL25hdi1iYXIuY29tcG9uZW50LmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNFLFdBQVc7RUFDWCxZQUFZO0VBQ1osZUFBZTtFQUNmLE1BQU07RUFDTixRQUFRO0VBQ1IsaUJBQWlCO0FBQ25COztBQUVBO0VBQ0Usa0JBQWtCO0VBQ2xCLFFBQVE7RUFDUixXQUFXO0VBQ1gsd0NBQWdDO1VBQWhDLGdDQUFnQztFQUNoQyxVQUFVO0VBQ1YsZUFBZTtBQUNqQjs7QUFFQTtFQUNFLFdBQVc7RUFDWCxXQUFXO0VBQ1gsaUJBQWlCO0VBQ2pCLDRCQUE0QjtFQUM1Qiw2QkFBNkI7QUFDL0I7O0FBRUE7RUFDRSxpQkFBaUI7QUFDbkI7O0FBRUE7RUFDRSxrQkFBa0I7RUFDbEIsTUFBTTtFQUNOLFdBQVc7RUFDWCxhQUFhO0VBQ2Isa0JBQWtCO0VBQ2xCLDRCQUE0QjtBQUM5Qjs7QUFFQTtFQUNFLG1CQUFtQjtBQUNyQjs7QUFFQTtFQUNFLGVBQWU7RUFDZixhQUFhO0VBQ2Isc0JBQXNCO0VBQ3RCLGVBQWU7RUFDZixtQkFBbUI7RUFDbkIsdUJBQXVCO0VBQ3ZCLFdBQVc7RUFDWCxhQUFhO0VBQ2IsZ0JBQWdCO0VBQ2hCLFNBQVM7RUFDVCxVQUFVO0VBQ1YsbUNBQW1DO0VBQ25DLGdCQUFnQjtFQUNoQixtQ0FBMkI7RUFBM0IsMkJBQTJCO0VBQTNCLG9EQUEyQjtBQUM3Qjs7QUFFQTtFQUNFLFFBQVE7RUFDUiwyQ0FBbUM7VUFBbkMsbUNBQW1DO0FBQ3JDOztBQUVBO0VBQ0UsT0FBTztFQUNQLDBDQUFrQztVQUFsQyxrQ0FBa0M7QUFDcEM7O0FBRUE7O0VBRUUsdUNBQStCO1VBQS9CLCtCQUErQjtBQUNqQzs7QUFFQTtFQUNFLGFBQWE7RUFDYixZQUFZO0VBQ1osNkJBQTBDO0VBQzFDLGtDQUFrQztFQUNsQyxzQkFBc0I7RUFDdEIsa0JBQWtCO0VBQ2xCLHVCQUF1QjtBQUN6Qjs7QUFFQTs7OztFQUlFLHlCQUF5QjtFQUN6QixZQUFZO0VBQ1osZUFBZTtFQUNmLHFCQUFxQjtFQUNyQixpQkFBaUI7RUFDakIsZUFBZTtBQUNqQjs7QUFFQTs7OztFQUlFLHFCQUFxQjtFQUNyQiwyQkFBMkI7RUFDM0IscUJBQXFCO0FBQ3ZCIiwiZmlsZSI6ImFwcC9uYXYtYmFyL25hdi1iYXIuY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbIi5uYXYtY29udGFpbmVyIHtcclxuICB3aWR0aDoxMDB2aDtcclxuICBoZWlnaHQ6IDRyZW07XHJcbiAgcG9zaXRpb246IGZpeGVkO1xyXG4gIHRvcDogMDtcclxuICByaWdodDogMDtcclxuICBiYWNrZ3JvdW5kOiBibGFjaztcclxufVxyXG5cclxuLm1lbnUtYnRuIHtcclxuICBwb3NpdGlvbjogYWJzb2x1dGU7XHJcbiAgdG9wOiA1MCU7XHJcbiAgcmlnaHQ6IDE2cHg7XHJcbiAgdHJhbnNmb3JtOiB0cmFuc2xhdGUoLTUwJSwgLTUwJSk7XHJcbiAgei1pbmRleDogNTtcclxuICBjdXJzb3I6IHBvaW50ZXI7XHJcbn1cclxuXHJcbi5idG4tbGluZSB7XHJcbiAgd2lkdGg6IDI4cHg7XHJcbiAgaGVpZ2h0OiAzcHg7XHJcbiAgbWFyZ2luOiAwIDAgNXB4IDA7XHJcbiAgYmFja2dyb3VuZDogcmdiKDE5MywxOTMsMTkzKTtcclxuICB0cmFuc2l0aW9uOiBiYWNrZ3JvdW5kIDE1MDBtcztcclxufVxyXG5cclxuZGl2LnNob3cgZGl2LmJ0bi1saW5lIHtcclxuICBiYWNrZ3JvdW5kOiBibGFjaztcclxufVxyXG5cclxuLm1lbnUtZHJvcGRvd24tY29udGFpbmVyIHtcclxuICBwb3NpdGlvbjogYWJzb2x1dGU7XHJcbiAgdG9wOiAwO1xyXG4gIHdpZHRoOiAxMDAlO1xyXG4gIG9wYWNpdHk6IDAuOTU7XHJcbiAgdmlzaWJpbGl0eTogaGlkZGVuO1xyXG4gIHRyYW5zaXRpb246IHZpc2liaWxpdHkgNTUwbXM7XHJcbn1cclxuXHJcbi5zaG93IHtcclxuICB2aXNpYmlsaXR5OiB2aXNpYmxlO1xyXG59XHJcblxyXG4ubmF2LW1lbnUsIC5tZW51LWJyYW5kaW5nICB7XHJcbiAgcG9zaXRpb246IGZpeGVkO1xyXG4gIGRpc3BsYXk6IGZsZXg7XHJcbiAgZmxleC1kaXJlY3Rpb246IGNvbHVtbjtcclxuICBmbGV4LXdyYXA6IHdyYXA7XHJcbiAgYWxpZ24taXRlbXM6IGNlbnRlcjtcclxuICBqdXN0aWZ5LWNvbnRlbnQ6IGNlbnRlcjtcclxuICB3aWR0aDogNTB2dztcclxuICBoZWlnaHQ6IDEwMHZoO1xyXG4gIG92ZXJmbG93OiBoaWRkZW47XHJcbiAgbWFyZ2luOiAwO1xyXG4gIHBhZGRpbmc6IDA7XHJcbiAgYmFja2dyb3VuZDogcmdiYSgyNTUsIDI1NSwgMjU1LCAuOCk7XHJcbiAgbGlzdC1zdHlsZTogbm9uZTtcclxuICB0cmFuc2l0aW9uOiB0cmFuc2Zvcm0gNTAwbXM7XHJcbn1cclxuXHJcbi5uYXYtbWVudSB7XHJcbiAgcmlnaHQ6IDA7XHJcbiAgdHJhbnNmb3JtOiB0cmFuc2xhdGUzZCgwLCAtMTAwJSwgMCk7XHJcbn1cclxuXHJcbi5tZW51LWJyYW5kaW5nIHtcclxuICBsZWZ0OiAwO1xyXG4gIHRyYW5zZm9ybTogdHJhbnNsYXRlM2QoMCwgMTAwJSwgMCk7XHJcbn1cclxuXHJcbm5hdi5zaG93IGRpdi5tZW51LWJyYW5kaW5nLFxyXG5uYXYuc2hvdyB1bC5uYXYtbWVudSB7XHJcbiAgdHJhbnNmb3JtOiB0cmFuc2xhdGUzZCgwLCAwLCAwKTtcclxufVxyXG5cclxuLnBvcnRyYWl0IHtcclxuICBoZWlnaHQ6IDEwMHB4O1xyXG4gIHdpZHRoOiAxMDBweDtcclxuICBiYWNrZ3JvdW5kOiB1cmwoJy4uLy4uL2Fzc2V0cy9heW9kbG8uanBnJyk7XHJcbiAgYmFja2dyb3VuZC1wb3NpdGlvbjogY2VudGVyIGNlbnRlcjtcclxuICBiYWNrZ3JvdW5kLXNpemU6IGNvdmVyO1xyXG4gIGJvcmRlci1yYWRpdXM6IDUwJTtcclxuICBib3JkZXI6IHNvbGlkIDNweCBibGFjaztcclxufVxyXG5cclxuLm5hdi1tZW51LWl0ZW0gYSxcclxuLmxvZy1vdXQsXHJcbi51c2VyLW5hbWUsXHJcbi5wb3J0cmFpdCB7XHJcbiAgdGV4dC10cmFuc2Zvcm06IHVwcGVyY2FzZTtcclxuICBjb2xvcjogYmxhY2s7XHJcbiAgY3Vyc29yOiBwb2ludGVyO1xyXG4gIGRpc3BsYXk6IGlubGluZS1ibG9jaztcclxuICB0cmFuc2l0aW9uOiAzMDBtcztcclxuICBtYXJnaW46IC40cmVtIDA7XHJcbn1cclxuXHJcbi5uYXYtbWVudS1pdGVtIGE6aG92ZXIsXHJcbi5sb2ctb3V0OmhvdmVyLFxyXG4udXNlci1uYW1lOmhvdmVyLFxyXG4ucG9ydHJhaXQ6aG92ZXIge1xyXG4gIGNvbG9yOiByZ2IoMjQ0LDY3LDU0KTtcclxuICBib3JkZXItY29sb3I6cmdiKDI0NCw2Nyw1NCk7XHJcbiAgdGV4dC1kZWNvcmF0aW9uOiBub25lO1xyXG59Il19 */"
+module.exports = ".nav-container {\r\n  width:100vh;\r\n  height: 4rem;\r\n  position: fixed;\r\n  top: 0;\r\n  right: 0;\r\n  background: black;\r\n}\r\n\r\n.menu-btn {\r\n  position: absolute;\r\n  top: 50%;\r\n  right: 16px;\r\n  -webkit-transform: translate(-50%, -50%);\r\n          transform: translate(-50%, -50%);\r\n  z-index: 5;\r\n  cursor: pointer;\r\n}\r\n\r\n.btn-line {\r\n  width: 28px;\r\n  height: 3px;\r\n  margin: 0 0 5px 0;\r\n  background: rgb(193,193,193);\r\n  transition: background 1500ms;\r\n}\r\n\r\ndiv.show div.btn-line {\r\n  background: black;\r\n}\r\n\r\n.menu-dropdown-container {\r\n  position: absolute;\r\n  top: 0;\r\n  width: 100%;\r\n  opacity: 0.95;\r\n  visibility: hidden;\r\n  transition: visibility 550ms;\r\n}\r\n\r\n.show {\r\n  visibility: visible;\r\n}\r\n\r\n.nav-menu, .menu-branding  {\r\n  position: fixed;\r\n  display: flex;\r\n  flex-direction: column;\r\n  flex-wrap: wrap;\r\n  align-items: center;\r\n  justify-content: center;\r\n  width: 50vw;\r\n  height: 100vh;\r\n  overflow: hidden;\r\n  margin: 0;\r\n  padding: 0;\r\n  background: rgba(255, 255, 255, .8);\r\n  list-style: none;\r\n  transition: -webkit-transform 500ms;\r\n  transition: transform 500ms;\r\n  transition: transform 500ms, -webkit-transform 500ms;\r\n}\r\n\r\n.nav-menu {\r\n  right: 0;\r\n  -webkit-transform: translate3d(0, -100%, 0);\r\n          transform: translate3d(0, -100%, 0);\r\n}\r\n\r\n.menu-branding {\r\n  left: 0;\r\n  -webkit-transform: translate3d(0, 100%, 0);\r\n          transform: translate3d(0, 100%, 0);\r\n}\r\n\r\nnav.show div.menu-branding,\r\nnav.show ul.nav-menu {\r\n  -webkit-transform: translate3d(0, 0, 0);\r\n          transform: translate3d(0, 0, 0);\r\n}\r\n\r\n.portrait {\r\n  height: 100px;\r\n  width: 100px;\r\n  /*background: url('../../assets/ayodlo.jpg');*/\r\n  background-position: center center;\r\n  background-size: cover;\r\n  border-radius: 50%;\r\n  border: solid 3px black;\r\n}\r\n\r\ninput[type=\"file\"] {\r\n  display: none;\r\n}\r\n\r\n.nav-menu-item a,\r\n.log-out,\r\n.user-name,\r\n.portrait {\r\n  text-transform: uppercase;\r\n  color: black;\r\n  cursor: pointer;\r\n  display: inline-block;\r\n  transition: 300ms;\r\n  margin: .4rem 0;\r\n}\r\n\r\n.nav-menu-item a:hover,\r\n.log-out:hover,\r\n.user-name:hover,\r\n.portrait:hover {\r\n  color: rgb(244,67,54);\r\n  border-color:rgb(244,67,54);\r\n  text-decoration: none;\r\n}\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImFwcC9uYXYtYmFyL25hdi1iYXIuY29tcG9uZW50LmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNFLFdBQVc7RUFDWCxZQUFZO0VBQ1osZUFBZTtFQUNmLE1BQU07RUFDTixRQUFRO0VBQ1IsaUJBQWlCO0FBQ25COztBQUVBO0VBQ0Usa0JBQWtCO0VBQ2xCLFFBQVE7RUFDUixXQUFXO0VBQ1gsd0NBQWdDO1VBQWhDLGdDQUFnQztFQUNoQyxVQUFVO0VBQ1YsZUFBZTtBQUNqQjs7QUFFQTtFQUNFLFdBQVc7RUFDWCxXQUFXO0VBQ1gsaUJBQWlCO0VBQ2pCLDRCQUE0QjtFQUM1Qiw2QkFBNkI7QUFDL0I7O0FBRUE7RUFDRSxpQkFBaUI7QUFDbkI7O0FBRUE7RUFDRSxrQkFBa0I7RUFDbEIsTUFBTTtFQUNOLFdBQVc7RUFDWCxhQUFhO0VBQ2Isa0JBQWtCO0VBQ2xCLDRCQUE0QjtBQUM5Qjs7QUFFQTtFQUNFLG1CQUFtQjtBQUNyQjs7QUFFQTtFQUNFLGVBQWU7RUFDZixhQUFhO0VBQ2Isc0JBQXNCO0VBQ3RCLGVBQWU7RUFDZixtQkFBbUI7RUFDbkIsdUJBQXVCO0VBQ3ZCLFdBQVc7RUFDWCxhQUFhO0VBQ2IsZ0JBQWdCO0VBQ2hCLFNBQVM7RUFDVCxVQUFVO0VBQ1YsbUNBQW1DO0VBQ25DLGdCQUFnQjtFQUNoQixtQ0FBMkI7RUFBM0IsMkJBQTJCO0VBQTNCLG9EQUEyQjtBQUM3Qjs7QUFFQTtFQUNFLFFBQVE7RUFDUiwyQ0FBbUM7VUFBbkMsbUNBQW1DO0FBQ3JDOztBQUVBO0VBQ0UsT0FBTztFQUNQLDBDQUFrQztVQUFsQyxrQ0FBa0M7QUFDcEM7O0FBRUE7O0VBRUUsdUNBQStCO1VBQS9CLCtCQUErQjtBQUNqQzs7QUFFQTtFQUNFLGFBQWE7RUFDYixZQUFZO0VBQ1osOENBQThDO0VBQzlDLGtDQUFrQztFQUNsQyxzQkFBc0I7RUFDdEIsa0JBQWtCO0VBQ2xCLHVCQUF1QjtBQUN6Qjs7QUFFQTtFQUNFLGFBQWE7QUFDZjs7QUFFQTs7OztFQUlFLHlCQUF5QjtFQUN6QixZQUFZO0VBQ1osZUFBZTtFQUNmLHFCQUFxQjtFQUNyQixpQkFBaUI7RUFDakIsZUFBZTtBQUNqQjs7QUFFQTs7OztFQUlFLHFCQUFxQjtFQUNyQiwyQkFBMkI7RUFDM0IscUJBQXFCO0FBQ3ZCIiwiZmlsZSI6ImFwcC9uYXYtYmFyL25hdi1iYXIuY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbIi5uYXYtY29udGFpbmVyIHtcclxuICB3aWR0aDoxMDB2aDtcclxuICBoZWlnaHQ6IDRyZW07XHJcbiAgcG9zaXRpb246IGZpeGVkO1xyXG4gIHRvcDogMDtcclxuICByaWdodDogMDtcclxuICBiYWNrZ3JvdW5kOiBibGFjaztcclxufVxyXG5cclxuLm1lbnUtYnRuIHtcclxuICBwb3NpdGlvbjogYWJzb2x1dGU7XHJcbiAgdG9wOiA1MCU7XHJcbiAgcmlnaHQ6IDE2cHg7XHJcbiAgdHJhbnNmb3JtOiB0cmFuc2xhdGUoLTUwJSwgLTUwJSk7XHJcbiAgei1pbmRleDogNTtcclxuICBjdXJzb3I6IHBvaW50ZXI7XHJcbn1cclxuXHJcbi5idG4tbGluZSB7XHJcbiAgd2lkdGg6IDI4cHg7XHJcbiAgaGVpZ2h0OiAzcHg7XHJcbiAgbWFyZ2luOiAwIDAgNXB4IDA7XHJcbiAgYmFja2dyb3VuZDogcmdiKDE5MywxOTMsMTkzKTtcclxuICB0cmFuc2l0aW9uOiBiYWNrZ3JvdW5kIDE1MDBtcztcclxufVxyXG5cclxuZGl2LnNob3cgZGl2LmJ0bi1saW5lIHtcclxuICBiYWNrZ3JvdW5kOiBibGFjaztcclxufVxyXG5cclxuLm1lbnUtZHJvcGRvd24tY29udGFpbmVyIHtcclxuICBwb3NpdGlvbjogYWJzb2x1dGU7XHJcbiAgdG9wOiAwO1xyXG4gIHdpZHRoOiAxMDAlO1xyXG4gIG9wYWNpdHk6IDAuOTU7XHJcbiAgdmlzaWJpbGl0eTogaGlkZGVuO1xyXG4gIHRyYW5zaXRpb246IHZpc2liaWxpdHkgNTUwbXM7XHJcbn1cclxuXHJcbi5zaG93IHtcclxuICB2aXNpYmlsaXR5OiB2aXNpYmxlO1xyXG59XHJcblxyXG4ubmF2LW1lbnUsIC5tZW51LWJyYW5kaW5nICB7XHJcbiAgcG9zaXRpb246IGZpeGVkO1xyXG4gIGRpc3BsYXk6IGZsZXg7XHJcbiAgZmxleC1kaXJlY3Rpb246IGNvbHVtbjtcclxuICBmbGV4LXdyYXA6IHdyYXA7XHJcbiAgYWxpZ24taXRlbXM6IGNlbnRlcjtcclxuICBqdXN0aWZ5LWNvbnRlbnQ6IGNlbnRlcjtcclxuICB3aWR0aDogNTB2dztcclxuICBoZWlnaHQ6IDEwMHZoO1xyXG4gIG92ZXJmbG93OiBoaWRkZW47XHJcbiAgbWFyZ2luOiAwO1xyXG4gIHBhZGRpbmc6IDA7XHJcbiAgYmFja2dyb3VuZDogcmdiYSgyNTUsIDI1NSwgMjU1LCAuOCk7XHJcbiAgbGlzdC1zdHlsZTogbm9uZTtcclxuICB0cmFuc2l0aW9uOiB0cmFuc2Zvcm0gNTAwbXM7XHJcbn1cclxuXHJcbi5uYXYtbWVudSB7XHJcbiAgcmlnaHQ6IDA7XHJcbiAgdHJhbnNmb3JtOiB0cmFuc2xhdGUzZCgwLCAtMTAwJSwgMCk7XHJcbn1cclxuXHJcbi5tZW51LWJyYW5kaW5nIHtcclxuICBsZWZ0OiAwO1xyXG4gIHRyYW5zZm9ybTogdHJhbnNsYXRlM2QoMCwgMTAwJSwgMCk7XHJcbn1cclxuXHJcbm5hdi5zaG93IGRpdi5tZW51LWJyYW5kaW5nLFxyXG5uYXYuc2hvdyB1bC5uYXYtbWVudSB7XHJcbiAgdHJhbnNmb3JtOiB0cmFuc2xhdGUzZCgwLCAwLCAwKTtcclxufVxyXG5cclxuLnBvcnRyYWl0IHtcclxuICBoZWlnaHQ6IDEwMHB4O1xyXG4gIHdpZHRoOiAxMDBweDtcclxuICAvKmJhY2tncm91bmQ6IHVybCgnLi4vLi4vYXNzZXRzL2F5b2Rsby5qcGcnKTsqL1xyXG4gIGJhY2tncm91bmQtcG9zaXRpb246IGNlbnRlciBjZW50ZXI7XHJcbiAgYmFja2dyb3VuZC1zaXplOiBjb3ZlcjtcclxuICBib3JkZXItcmFkaXVzOiA1MCU7XHJcbiAgYm9yZGVyOiBzb2xpZCAzcHggYmxhY2s7XHJcbn1cclxuXHJcbmlucHV0W3R5cGU9XCJmaWxlXCJdIHtcclxuICBkaXNwbGF5OiBub25lO1xyXG59XHJcblxyXG4ubmF2LW1lbnUtaXRlbSBhLFxyXG4ubG9nLW91dCxcclxuLnVzZXItbmFtZSxcclxuLnBvcnRyYWl0IHtcclxuICB0ZXh0LXRyYW5zZm9ybTogdXBwZXJjYXNlO1xyXG4gIGNvbG9yOiBibGFjaztcclxuICBjdXJzb3I6IHBvaW50ZXI7XHJcbiAgZGlzcGxheTogaW5saW5lLWJsb2NrO1xyXG4gIHRyYW5zaXRpb246IDMwMG1zO1xyXG4gIG1hcmdpbjogLjRyZW0gMDtcclxufVxyXG5cclxuLm5hdi1tZW51LWl0ZW0gYTpob3ZlcixcclxuLmxvZy1vdXQ6aG92ZXIsXHJcbi51c2VyLW5hbWU6aG92ZXIsXHJcbi5wb3J0cmFpdDpob3ZlciB7XHJcbiAgY29sb3I6IHJnYigyNDQsNjcsNTQpO1xyXG4gIGJvcmRlci1jb2xvcjpyZ2IoMjQ0LDY3LDU0KTtcclxuICB0ZXh0LWRlY29yYXRpb246IG5vbmU7XHJcbn0iXX0= */"
 
 /***/ }),
 
@@ -1134,6 +1135,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _auth_auth_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../auth/auth.service */ "./src/app/auth/auth.service.ts");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1181,10 +1183,13 @@ var __generator = (undefined && undefined.__generator) || function (thisArg, bod
 
 
 
+
 var NavBarComponent = /** @class */ (function () {
-    function NavBarComponent(authService, router) {
+    function NavBarComponent(authService, router, http) {
         this.authService = authService;
         this.router = router;
+        this.http = http;
+        this.selectedFile = null;
         this.showClasses = { show: false };
         this.userIsAuthenticated = false;
     }
@@ -1208,14 +1213,73 @@ var NavBarComponent = /** @class */ (function () {
         this.showClasses.show === false ? this.showClasses.show = true : this.showClasses.show = false;
     };
     NavBarComponent.prototype.ngOnInit = function () {
-        var _this = this;
-        this.userIsAuthenticated = this.authService.getIsAuth();
-        this.authListenerSubs = this.authService.getAuthStatusListener().subscribe(function (isAuthenticated) {
-            _this.userIsAuthenticated = isAuthenticated;
+        return __awaiter(this, void 0, void 0, function () {
+            var _this = this;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.getAvatar()];
+                    case 1:
+                        _a.sent();
+                        this.userIsAuthenticated = this.authService.getIsAuth();
+                        this.authListenerSubs = this.authService.getAuthStatusListener().subscribe(function (isAuthenticated) {
+                            _this.userIsAuthenticated = isAuthenticated;
+                        });
+                        if (!this.userIsAuthenticated) {
+                            this.router.navigate(['/signin']);
+                        }
+                        return [2 /*return*/];
+                }
+            });
         });
-        if (!this.userIsAuthenticated) {
-            this.router.navigate(['/signin']);
-        }
+    };
+    NavBarComponent.prototype.onFileSelected = function (event) {
+        return __awaiter(this, void 0, void 0, function () {
+            var _a, fd;
+            return __generator(this, function (_b) {
+                switch (_b.label) {
+                    case 0:
+                        _a = this;
+                        return [4 /*yield*/, event.target.files[0]];
+                    case 1:
+                        _a.selectedFile = _b.sent();
+                        fd = new FormData();
+                        fd.append('myAvatar', this.selectedFile);
+                        this.http.post('/api/avatar', fd)
+                            .subscribe(function (res) {
+                            console.log('Avatar uploaded succesfully!');
+                        });
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
+    NavBarComponent.prototype.getAvatar = function () {
+        return __awaiter(this, void 0, void 0, function () {
+            var _this = this;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.http.get('/api/avatar')
+                            .subscribe(function (res) { return __awaiter(_this, void 0, void 0, function () {
+                            var _a;
+                            return __generator(this, function (_b) {
+                                switch (_b.label) {
+                                    case 0:
+                                        _a = this;
+                                        return [4 /*yield*/, res.avatar];
+                                    case 1:
+                                        _a.avatar = _b.sent();
+                                        this.avatar = this.avatar.split('\\')[1];
+                                        console.log(this.avatar);
+                                        return [2 /*return*/];
+                                }
+                            });
+                        }); })];
+                    case 1:
+                        _a.sent();
+                        return [2 /*return*/];
+                }
+            });
+        });
     };
     NavBarComponent.prototype.ngOnDestroy = function () {
         this.authListenerSubs.unsubscribe();
@@ -1226,7 +1290,7 @@ var NavBarComponent = /** @class */ (function () {
             template: __webpack_require__(/*! raw-loader!./nav-bar.component.html */ "./node_modules/raw-loader/index.js!./src/app/nav-bar/nav-bar.component.html"),
             styles: [__webpack_require__(/*! ./nav-bar.component.css */ "./src/app/nav-bar/nav-bar.component.css")]
         }),
-        __metadata("design:paramtypes", [_auth_auth_service__WEBPACK_IMPORTED_MODULE_1__["AuthService"], _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"]])
+        __metadata("design:paramtypes", [_auth_auth_service__WEBPACK_IMPORTED_MODULE_1__["AuthService"], _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"], _angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpClient"]])
     ], NavBarComponent);
     return NavBarComponent;
 }());
@@ -1476,7 +1540,6 @@ var LogRoutineService = /** @class */ (function () {
                         console.log(exercises[0]);
                         this.http.post('api/workouts', routine)
                             .subscribe(function (responseData) {
-                            //console.log(responseData.message);
                             _this.savedRoutines.push(routine);
                             _this.savedRoutinesUpdated.next(_this.savedRoutines.slice());
                         });
@@ -1488,9 +1551,6 @@ var LogRoutineService = /** @class */ (function () {
     LogRoutineService.prototype.deleteRoutine = function (workout) {
         this.http.delete('api/workouts/' + workout._id)
             .subscribe(function (responseData) {
-            //console.log(responseData.message);
-            //this.savedRoutines.push(routine);
-            //this.savedRoutinesUpdated.next([...this.savedRoutines]);
         });
     };
     LogRoutineService = __decorate([
@@ -1674,7 +1734,6 @@ var WorkoutHistoryListComponent = /** @class */ (function () {
                                 _this.savedRoutines = _this.savedRoutines.reverse();
                                 _this.lastWorkout = savedWorkouts[0];
                                 _this.currentWorkout = savedWorkouts[0];
-                                console.log(savedWorkouts);
                             })];
                     case 2:
                         _a.workoutsSub = _b.sent();
@@ -1710,7 +1769,6 @@ var WorkoutHistoryListComponent = /** @class */ (function () {
     };
     WorkoutHistoryListComponent.prototype.closeModal = function () {
         this.showClasses.show === true ? this.showClasses.show = false : this.showClasses.show = true;
-        console.log(this.currentWorkout);
     };
     WorkoutHistoryListComponent.prototype.onDeleteWorkout = function () {
         this.logRoutineService.deleteRoutine(this.currentWorkout);

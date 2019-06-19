@@ -3,7 +3,7 @@ const jwt = require("jsonwebtoken");
 module.exports = (req, res, next) => {
   //We use the try catch block to see if we actually have a token, if not we will proceed accordingly
   try {
-    console.log(req.headers.authorization.split(" ")[1]);
+    //console.log(req.headers.authorization.split(" ")[1]);
     //Getting the Token from the headers - we are assuming here that the token will look like "Bearer asdfghjasdfghj";
     const token = req.headers.authorization.split(" ")[1];
     //jwt.verify will throw an error if the token fails - the second argument is the secret string we used for creating the oken which is in the user.js route
