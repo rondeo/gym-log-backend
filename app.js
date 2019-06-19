@@ -165,7 +165,7 @@ app.get("/api/avatar", checkAuth, (req, res, next) => {
 });
 
 //SIGNUP
-app.post("/api/signup", (req, res, next) => {
+app.post("/api/sign-up", (req, res, next) => {
 	bcrypt.hash(req.body.password, 10)
 	  .then(hash => {
 		const user = new User ({
@@ -189,7 +189,7 @@ app.post("/api/signup", (req, res, next) => {
   });
   
   //SIGNIN
-  app.post("/api/signin", (req, res, next) => {
+  app.post("/api/sign-in", (req, res, next) => {
 	let fetchedUser;
 	User.findOne({ email: req.body.email })
 	  .then( user => {
