@@ -18,7 +18,7 @@ module.exports = "<!DOCTYPE html>\n<html lang=\"en\">\n\n<head>\n    <meta chars
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<mat-card>\n    <form (submit)=\"onSignIn(signInForm)\" #signInForm=\"ngForm\" class=\"signin-form\">\n        <h1 class=\"card-title\">Login</h1>\n      <mat-form-field>\n        <input matInput type=\"email\" placeholder=\"E-Mail\" #emailInput=\"ngModel\" required email name=\"email\" ngModel>\n        <mat-error *ngIf=\"emailInput.invalid\">Please enter a valid email.</mat-error>\n      </mat-form-field>\n      <mat-form-field>\n        <input matInput type=\"password\" placeholder=\"Password\" name=\"password\" ngModel #passwordInput=\"ngModel\" required>\n        <mat-error *ngIf=\"passwordInput.invalid\">Please enter a valid password.</mat-error>\n      </mat-form-field>\n      <div class=\"create-account\">\n          <button mat-raised-button color=\"accent\" type=\"submit\">Login</button>\n          <a routerLink=\"/signup\">Create Account</a>\n        </div>\n    </form>\n  </mat-card>\n  "
+module.exports = "<mat-card>\r\n    <form class=\"signin-form\" [formGroup]=\"signinForm\" (ngSubmit)=\"onSubmit()\">\r\n      <h1 class=\"card-title\">Login</h1>\r\n      <mat-form-field>\r\n        <input matInput type=\"email\" placeholder=\"E-Mail\" formControlName=\"email\">\r\n        <span class=\"invalid-message\" *ngIf=\"!signinForm.get('email').valid && signinForm.get('email').touched\">Please enter a valid email!</span>\r\n      </mat-form-field>\r\n      <mat-form-field>\r\n        <input matInput type=\"password\" placeholder=\"Password\" formControlName=\"password\">\r\n        <span class=\"invalid-message\" *ngIf=\"!signinForm.get('password').valid && signinForm.get('password').touched\">Please enter a valid password!</span>      </mat-form-field>\r\n      <div class=\"create-account\">\r\n          <button mat-raised-button color=\"accent\" type=\"submit\">Login</button>\r\n          <a routerLink=\"/signup\">Create Account</a>\r\n        </div>\r\n    </form>\r\n  </mat-card>\r\n  "
 
 /***/ }),
 
@@ -29,7 +29,7 @@ module.exports = "<mat-card>\n    <form (submit)=\"onSignIn(signInForm)\" #signI
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<mat-card>\n    <form (submit)=\"onSignUp(signUpForm)\" #signUpForm=\"ngForm\" class=\"signup-form\">\n        <h1 class=\"card-title\">Create<br>Account</h1>\n      <mat-form-field>\n        <input matInput type=\"email\" placeholder=\"E-Mail\" #emailInput=\"ngModel\" required email name=\"email\" ngModel>\n        <mat-error *ngIf=\"emailInput.invalid\">Please enter a valid email.</mat-error>\n      </mat-form-field>\n      <mat-form-field>\n        <input matInput type=\"password\" placeholder=\"Password\" name=\"password\" ngModel #passwordInput=\"ngModel\" required>\n        <mat-error *ngIf=\"passwordInput.invalid\">Please enter a valid password.</mat-error>\n      </mat-form-field>\n      <mat-form-field>\n          <input matInput type=\"password\" placeholder=\"Verify Password\" name=\"verify-password\" ngModel #passwordInput=\"ngModel\" required>\n          <mat-error *ngIf=\"passwordInput.invalid\">Please enter a valid password.</mat-error>\n        </mat-form-field>\n      <div class=\"cancel\">\n          <button mat-raised-button color=\"accent\" type=\"submit\">Sign Up</button>\n          <a routerLink=\"/workout-history\">Cancel</a>\n        </div>\n    </form>\n  </mat-card>"
+module.exports = "<mat-card>\r\n    <form class=\"signup-form\" [formGroup]=\"signupForm\" (ngSubmit)=\"onSubmit()\">\r\n      <h1 class=\"card-title\">Sign Up</h1>\r\n      <mat-form-field>\r\n        <input matInput type=\"email\" placeholder=\"E-Mail\" formControlName=\"email\">\r\n        <span class=\"invalid-message\" *ngIf=\"!signupForm.get('email').valid && signupForm.get('email').touched\">Please enter a valid email!</span>\r\n      </mat-form-field>\r\n      <mat-form-field>\r\n          <input matInput type=\"text\" placeholder=\"User Name\" formControlName=\"userName\">\r\n          <span class=\"invalid-message\" *ngIf=\"!signupForm.get('userName').valid && signupForm.get('userName').touched\">Please enter a valid userName!</span>\r\n      </mat-form-field>\r\n      <mat-form-field>\r\n        <input matInput type=\"password\" placeholder=\"Password\" formControlName=\"password\">\r\n        <span class=\"invalid-message\" *ngIf=\"!signupForm.get('password').valid && signupForm.get('password').touched\">Please enter a valid password!</span>\r\n      </mat-form-field>\r\n      <mat-form-field>\r\n          <input matInput type=\"password\" placeholder=\"Verify Password\" formControlName=\"verifyPassword\">\r\n          <span class=\"invalid-message\" *ngIf=\"!signupForm.get('verifyPassword').valid && signupForm.get('verifyPassword').touched\">Please verify your password!</span>\r\n      </mat-form-field>\r\n      <div class=\"cancel\">\r\n          <button mat-raised-button color=\"accent\" type=\"submit\">Sign Up</button>\r\n          <a routerLink=\"/signin\">Cancel</a>\r\n        </div>\r\n    </form>\r\n  </mat-card>"
 
 /***/ }),
 
@@ -62,7 +62,7 @@ module.exports = "<div class=\"main\" *ngIf=\"currentRoutine; else notShow\">\n 
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"nav-container\">\r\n\r\n  <div [ngClass]=\"showClasses\" class=\"menu-btn\" (click)=\"toggleMenu()\">\r\n    <div class=\"btn-line\"></div>\r\n    <div class=\"btn-line\"></div>\r\n    <div class=\"btn-line\"></div>\r\n  </div>\r\n\r\n  <nav [ngClass]=\"showClasses\" class=\"menu-dropdown-container\" (click)=\"toggleMenu()\">\r\n\r\n    <div [ngClass]=\"showClasses\" class=\"menu-branding\" (click)=\"toggleMenu()\">\r\n      <div [ngClass]=\"showClasses\" class=\"user-name\" (click)=\"toggleMenu()\">USER NAME</div>\r\n      <label [ngClass]=\"showClasses\" *ngIf=\"avatar\" [style.background]=\"'url(http://localhost:8080/uploads/' + avatar + ')'\" class=\"portrait\">\r\n          <input [ngClass]=\"showClasses\" *ngIf=\"avatar\" [style.background]=\"'url(http://localhost:8080/uploads/' + avatar + ')'\" type=\"file\" (change)=\"onFileSelected($event)\" class=\"portrait\">\r\n      </label>\r\n      <div [ngClass]=\"showClasses\" class=\"log-out\" (click)=\"onLogout()\">Logout</div>\r\n    </div>\r\n\r\n    <ul class=\"nav-menu\" (click)=\"toggleMenu()\">\r\n      <li [ngClass]=\"showClasses\" class=\"nav-menu-item\"><a routerLink=\"/workout-history\" (click)=\"toggleMenu()\">Home</a></li>\r\n      <li [ngClass]=\"showClasses\" class=\"nav-menu-item\"><a routerLink=\"/routines\" (click)=\"toggleMenu()\">Routines</a></li>\r\n      <li [ngClass]=\"showClasses\" class=\"nav-menu-item\"><a routerLink=\"/create-routine\" (click)=\"toggleMenu()\">Add Routine</a></li>\r\n      <li [ngClass]=\"showClasses\" class=\"nav-menu-item\"><a routerLink=\"/log-workout\" (click)=\"toggleMenu()\">Log Workout</a></li>\r\n    </ul>\r\n\r\n  </nav>\r\n\r\n</div>"
+module.exports = "<div class=\"nav-container\">\r\n\r\n  <div class=\"menu-btn\" [ngClass]=\"showClasses\" *ngIf=\"userIsAuthenticated\" (click)=\"toggleMenu()\">\r\n    <div class=\"btn-line\"></div>\r\n    <div class=\"btn-line\"></div>\r\n    <div class=\"btn-line\"></div>\r\n  </div>\r\n\r\n  <nav class=\"menu-dropdown-container\" [ngClass]=\"showClasses\" *ngIf=\"userIsAuthenticated\" (click)=\"toggleMenu()\">\r\n\r\n    <div [ngClass]=\"showClasses\" class=\"menu-branding\" (click)=\"toggleMenu()\">\r\n<<<<<<< HEAD\r\n      <div [ngClass]=\"showClasses\" class=\"user-name\" (click)=\"toggleMenu()\">USER NAME</div>\r\n      <label [ngClass]=\"showClasses\" *ngIf=\"avatar\" [style.background]=\"'url(/uploads/' + avatar + ')'\" class=\"portrait\">\r\n          <input [ngClass]=\"showClasses\" *ngIf=\"avatar\" [style.background]=\"'url(/uploads/' + avatar + ')'\" type=\"file\" (change)=\"onFileSelected($event)\" class=\"portrait\">\r\n=======\r\n      <div [ngClass]=\"showClasses\" class=\"user-name\" (click)=\"toggleMenu()\">{{userName}}</div>\r\n      <label [ngClass]=\"showClasses\" *ngIf=\"avatar\" [style.background]=\"'url(http://localhost:8080/uploads/' + avatar + ')'\" class=\"portrait\">\r\n          <input [ngClass]=\"showClasses\" *ngIf=\"avatar\" [style.background]=\"'url(http://localhost:8080/uploads/' + avatar + ')'\" type=\"file\" (change)=\"onFileSelected($event)\" class=\"portrait\">\r\n>>>>>>> 513e077... Added form validation for signin and signup + fixed default picture for avatar\r\n      </label>\r\n      <div [ngClass]=\"showClasses\" class=\"log-out\" (click)=\"onLogout()\">Logout</div>\r\n    </div>\r\n\r\n    <ul class=\"nav-menu\" (click)=\"toggleMenu()\">\r\n      <li [ngClass]=\"showClasses\" class=\"nav-menu-item\"><a routerLink=\"/workout-history\" (click)=\"toggleMenu()\">Home</a></li>\r\n      <li [ngClass]=\"showClasses\" class=\"nav-menu-item\"><a routerLink=\"/routines\" (click)=\"toggleMenu()\">Routines</a></li>\r\n      <li [ngClass]=\"showClasses\" class=\"nav-menu-item\"><a routerLink=\"/create-routine\" (click)=\"toggleMenu()\">Add Routine</a></li>\r\n      <li [ngClass]=\"showClasses\" class=\"nav-menu-item\"><a routerLink=\"/log-workout\" (click)=\"toggleMenu()\">Log Workout</a></li>\r\n    </ul>\r\n\r\n  </nav>\r\n\r\n</div>"
 
 /***/ }),
 
@@ -73,7 +73,7 @@ module.exports = "<div class=\"nav-container\">\r\n\r\n  <div [ngClass]=\"showCl
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"main\">\n  <h3 class=\"routines-header\">Routines</h3>\n  <div class=\"add-routine-container\">\n    <button mat-flat-button routerLink=\"/create-routine\">ADD ROUTINE</button>\n  </div>\n  <mat-list class=\"routine-list\" role=\"list\" *ngFor=\"let routine of routines\" (routineAdded)=\"onRoutineAdded($event)\">\n    <div class=\"routine-list-item\">\n      <mat-list-item class=\"routine-list-item__routine-name\" role=\"listitem\" (click)=\"open\">{{ routine.name }}\n      </mat-list-item>\n      <div class=\"routine-list-item-button-group\">\n        <button class=\"routine-list-item-button-group__edit-button\" mat-flat-button (click)=\"onDelete(routine._id)\">\n          EDIT\n        </button>\n        <button mat-flat-button color=\"warn\" (click)=\"onDelete(routine._id)\">DELETE</button>\n      </div>\n    </div>\n  </mat-list>\n</div>\n"
+module.exports = "<div class=\"main\">\r\n  <h3 class=\"routines-header\">Routines</h3>\r\n  <div class=\"add-routine-container\">\r\n    <button mat-flat-button routerLink=\"/create-routine\">ADD ROUTINE</button>\r\n  </div>\r\n  <mat-list class=\"routine-list\" role=\"list\" *ngFor=\"let routine of routines\" (routineAdded)=\"onRoutineAdded($event)\">\r\n    <div class=\"routine-list-item\">\r\n      <div class=\"routine-list-item__routine-name\" (click)=\"open\">{{ routine.name }}\r\n      </div>\r\n      <div class=\"routine-list-item-button-group\">\r\n        <!--<button class=\"routine-list-item-button-group__edit-button\" mat-flat-button (click)=\"onDelete(routine._id)\">\r\n          EDIT\r\n        </button>-->\r\n        <button mat-flat-button color=\"warn\" (click)=\"onDelete(routine._id)\">DELETE</button>\r\n      </div>\r\n    </div>\r\n  </mat-list>\r\n</div>\r\n"
 
 /***/ }),
 
@@ -469,19 +469,19 @@ var AuthService = /** @class */ (function () {
     AuthService.prototype.getAuthStatusListener = function () {
         return this.authStatusListener.asObservable();
     };
-    AuthService.prototype.createUser = function (email, password) {
-        var authData = { email: email, password: password };
-        this.http.post('http://localhost:8080/api/sign-up', authData)
+    AuthService.prototype.createUser = function (email, userName, password) {
+        var _this = this;
+        var authData = { email: email, userName: userName, password: password };
+        this.http.post('/api/sign-up', authData)
             .subscribe(function (response) {
-            console.log(response);
+            _this.router.navigate(['/signin']);
         });
     };
     AuthService.prototype.login = function (email, password) {
         var _this = this;
-        var authData = { email: email, password: password };
-        this.http.post('http://localhost:8080/api/sign-in', authData)
+        var authData = { email: email, userName: null, password: password };
+        this.http.post('/api/sign-in', authData)
             .subscribe(function (response) {
-            console.log(response);
             var token = response.token;
             _this.token = token;
             if (token) {
@@ -494,9 +494,7 @@ var AuthService = /** @class */ (function () {
                 _this.authStatusListener.next(true);
                 var now = new Date();
                 var expirationDate = new Date(now.getTime() + expiresInDuration * 1000);
-                console.log(expirationDate);
                 _this.saveAuthData(token, expirationDate);
-                console.log(token);
                 _this.router.navigate(['/']);
             }
         });
@@ -521,7 +519,6 @@ var AuthService = /** @class */ (function () {
             return __generator(this, function (_c) {
                 switch (_c.label) {
                     case 0:
-                        console.log("logging out!");
                         _a = this;
                         return [4 /*yield*/, null];
                     case 1:
@@ -564,9 +561,6 @@ var AuthService = /** @class */ (function () {
             expirationDate: new Date(expirationDate)
         };
     };
-    AuthService.prototype.ngOnDestroy = function () {
-        this.authStatusListener.unsubscribe();
-    };
     AuthService = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({ providedIn: 'root' }),
         __metadata("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_0__["HttpClient"], _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"]])
@@ -585,7 +579,7 @@ var AuthService = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "mat-card {\r\n    width: 100vw;\r\n    margin: 4rem 0 0 0;\r\n    display: flex;\r\n    flex-direction: column;\r\n    justify-content: center;\r\n    align-items: center;\r\n}\r\n\r\n.signin-form {\r\n    display: flex;\r\n    flex-direction: column;\r\n    justify-content: center;\r\n    align-items: center;\r\n}\r\n\r\n.create-account {\r\n    display: flex;\r\n    flex-direction: row;\r\n    justify-content: center;\r\n    align-items: center;\r\n    align-content: center;\r\n    margin: 2rem;\r\n}\r\n\r\ndiv > button, div > a {\r\n    margin: 2rem;\r\n}\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImFwcC9hdXRoL3NpZ25pbi9zaWduaW4uY29tcG9uZW50LmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtJQUNJLFlBQVk7SUFDWixrQkFBa0I7SUFDbEIsYUFBYTtJQUNiLHNCQUFzQjtJQUN0Qix1QkFBdUI7SUFDdkIsbUJBQW1CO0FBQ3ZCOztBQUVBO0lBQ0ksYUFBYTtJQUNiLHNCQUFzQjtJQUN0Qix1QkFBdUI7SUFDdkIsbUJBQW1CO0FBQ3ZCOztBQUVBO0lBQ0ksYUFBYTtJQUNiLG1CQUFtQjtJQUNuQix1QkFBdUI7SUFDdkIsbUJBQW1CO0lBQ25CLHFCQUFxQjtJQUNyQixZQUFZO0FBQ2hCOztBQUVBO0lBQ0ksWUFBWTtBQUNoQiIsImZpbGUiOiJhcHAvYXV0aC9zaWduaW4vc2lnbmluLmNvbXBvbmVudC5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyJtYXQtY2FyZCB7XHJcbiAgICB3aWR0aDogMTAwdnc7XHJcbiAgICBtYXJnaW46IDRyZW0gMCAwIDA7XHJcbiAgICBkaXNwbGF5OiBmbGV4O1xyXG4gICAgZmxleC1kaXJlY3Rpb246IGNvbHVtbjtcclxuICAgIGp1c3RpZnktY29udGVudDogY2VudGVyO1xyXG4gICAgYWxpZ24taXRlbXM6IGNlbnRlcjtcclxufVxyXG5cclxuLnNpZ25pbi1mb3JtIHtcclxuICAgIGRpc3BsYXk6IGZsZXg7XHJcbiAgICBmbGV4LWRpcmVjdGlvbjogY29sdW1uO1xyXG4gICAganVzdGlmeS1jb250ZW50OiBjZW50ZXI7XHJcbiAgICBhbGlnbi1pdGVtczogY2VudGVyO1xyXG59XHJcblxyXG4uY3JlYXRlLWFjY291bnQge1xyXG4gICAgZGlzcGxheTogZmxleDtcclxuICAgIGZsZXgtZGlyZWN0aW9uOiByb3c7XHJcbiAgICBqdXN0aWZ5LWNvbnRlbnQ6IGNlbnRlcjtcclxuICAgIGFsaWduLWl0ZW1zOiBjZW50ZXI7XHJcbiAgICBhbGlnbi1jb250ZW50OiBjZW50ZXI7XHJcbiAgICBtYXJnaW46IDJyZW07XHJcbn1cclxuXHJcbmRpdiA+IGJ1dHRvbiwgZGl2ID4gYSB7XHJcbiAgICBtYXJnaW46IDJyZW07XHJcbn0iXX0= */"
+module.exports = "mat-card {\r\n    width: 100vw;\r\n    margin: 4rem 0 0 0;\r\n    display: flex;\r\n    flex-direction: column;\r\n    justify-content: center;\r\n    align-items: center;\r\n}\r\n\r\n.signin-form {\r\n    display: flex;\r\n    flex-direction: column;\r\n    justify-content: center;\r\n    align-items: center;\r\n}\r\n\r\n.create-account {\r\n    display: flex;\r\n    flex-direction: row;\r\n    justify-content: center;\r\n    align-items: center;\r\n    align-content: center;\r\n    margin: 2rem;\r\n}\r\n\r\ndiv > button, div > a {\r\n    margin: 2rem;\r\n}\r\n\r\n.invalid-message {\r\n    font-size: .7rem;\r\n    color: lightslategray;\r\n}\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImFwcC9hdXRoL3NpZ25pbi9zaWduaW4uY29tcG9uZW50LmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtJQUNJLFlBQVk7SUFDWixrQkFBa0I7SUFDbEIsYUFBYTtJQUNiLHNCQUFzQjtJQUN0Qix1QkFBdUI7SUFDdkIsbUJBQW1CO0FBQ3ZCOztBQUVBO0lBQ0ksYUFBYTtJQUNiLHNCQUFzQjtJQUN0Qix1QkFBdUI7SUFDdkIsbUJBQW1CO0FBQ3ZCOztBQUVBO0lBQ0ksYUFBYTtJQUNiLG1CQUFtQjtJQUNuQix1QkFBdUI7SUFDdkIsbUJBQW1CO0lBQ25CLHFCQUFxQjtJQUNyQixZQUFZO0FBQ2hCOztBQUVBO0lBQ0ksWUFBWTtBQUNoQjs7QUFFQTtJQUNJLGdCQUFnQjtJQUNoQixxQkFBcUI7QUFDekIiLCJmaWxlIjoiYXBwL2F1dGgvc2lnbmluL3NpZ25pbi5jb21wb25lbnQuY3NzIiwic291cmNlc0NvbnRlbnQiOlsibWF0LWNhcmQge1xyXG4gICAgd2lkdGg6IDEwMHZ3O1xyXG4gICAgbWFyZ2luOiA0cmVtIDAgMCAwO1xyXG4gICAgZGlzcGxheTogZmxleDtcclxuICAgIGZsZXgtZGlyZWN0aW9uOiBjb2x1bW47XHJcbiAgICBqdXN0aWZ5LWNvbnRlbnQ6IGNlbnRlcjtcclxuICAgIGFsaWduLWl0ZW1zOiBjZW50ZXI7XHJcbn1cclxuXHJcbi5zaWduaW4tZm9ybSB7XHJcbiAgICBkaXNwbGF5OiBmbGV4O1xyXG4gICAgZmxleC1kaXJlY3Rpb246IGNvbHVtbjtcclxuICAgIGp1c3RpZnktY29udGVudDogY2VudGVyO1xyXG4gICAgYWxpZ24taXRlbXM6IGNlbnRlcjtcclxufVxyXG5cclxuLmNyZWF0ZS1hY2NvdW50IHtcclxuICAgIGRpc3BsYXk6IGZsZXg7XHJcbiAgICBmbGV4LWRpcmVjdGlvbjogcm93O1xyXG4gICAganVzdGlmeS1jb250ZW50OiBjZW50ZXI7XHJcbiAgICBhbGlnbi1pdGVtczogY2VudGVyO1xyXG4gICAgYWxpZ24tY29udGVudDogY2VudGVyO1xyXG4gICAgbWFyZ2luOiAycmVtO1xyXG59XHJcblxyXG5kaXYgPiBidXR0b24sIGRpdiA+IGEge1xyXG4gICAgbWFyZ2luOiAycmVtO1xyXG59XHJcblxyXG4uaW52YWxpZC1tZXNzYWdlIHtcclxuICAgIGZvbnQtc2l6ZTogLjdyZW07XHJcbiAgICBjb2xvcjogbGlnaHRzbGF0ZWdyYXk7XHJcbn0iXX0= */"
 
 /***/ }),
 
@@ -600,7 +594,8 @@ module.exports = "mat-card {\r\n    width: 100vw;\r\n    margin: 4rem 0 0 0;\r\n
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SigninComponent", function() { return SigninComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _auth_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../auth.service */ "./src/app/auth/auth.service.ts");
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
+/* harmony import */ var _auth_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../auth.service */ "./src/app/auth/auth.service.ts");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -612,17 +607,20 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 };
 
 
+
 var SigninComponent = /** @class */ (function () {
     function SigninComponent(authService) {
         this.authService = authService;
     }
     SigninComponent.prototype.ngOnInit = function () {
+        this.signinForm = new _angular_forms__WEBPACK_IMPORTED_MODULE_1__["FormGroup"]({
+            'email': new _angular_forms__WEBPACK_IMPORTED_MODULE_1__["FormControl"](null, [_angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required, _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].email]),
+            'password': new _angular_forms__WEBPACK_IMPORTED_MODULE_1__["FormControl"](null, _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required)
+        });
     };
-    SigninComponent.prototype.onSignIn = function (form) {
-        if (form.invalid) {
-            return;
-        }
-        this.authService.login(form.value.email, form.value.password);
+    SigninComponent.prototype.onSubmit = function () {
+        console.log(this.signinForm);
+        this.authService.login(this.signinForm.value.email, this.signinForm.value.password);
     };
     SigninComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
@@ -630,7 +628,7 @@ var SigninComponent = /** @class */ (function () {
             template: __webpack_require__(/*! raw-loader!./signin.component.html */ "./node_modules/raw-loader/index.js!./src/app/auth/signin/signin.component.html"),
             styles: [__webpack_require__(/*! ./signin.component.css */ "./src/app/auth/signin/signin.component.css")]
         }),
-        __metadata("design:paramtypes", [_auth_service__WEBPACK_IMPORTED_MODULE_1__["AuthService"]])
+        __metadata("design:paramtypes", [_auth_service__WEBPACK_IMPORTED_MODULE_2__["AuthService"]])
     ], SigninComponent);
     return SigninComponent;
 }());
@@ -646,7 +644,7 @@ var SigninComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "mat-card {\r\n    width: 100vw;\r\n    margin: 4rem 0 0 0;\r\n    display: flex;\r\n    flex-direction: column;\r\n    justify-content: center;\r\n    align-items: center;\r\n}\r\n\r\nh1 {\r\n    text-align: center;\r\n}\r\n\r\n.signup-form {\r\n    display: flex;\r\n    flex-direction: column;\r\n    justify-content: center;\r\n    align-items: center;\r\n}\r\n\r\n.cancel {\r\n    display: flex;\r\n    flex-direction: row;\r\n    justify-content: center;\r\n    align-items: center;\r\n    align-content: center;\r\n    margin: 2rem;\r\n}\r\n\r\ndiv > button, div > a {\r\n    margin: 2rem;\r\n}\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImFwcC9hdXRoL3NpZ251cC9zaWdudXAuY29tcG9uZW50LmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtJQUNJLFlBQVk7SUFDWixrQkFBa0I7SUFDbEIsYUFBYTtJQUNiLHNCQUFzQjtJQUN0Qix1QkFBdUI7SUFDdkIsbUJBQW1CO0FBQ3ZCOztBQUVBO0lBQ0ksa0JBQWtCO0FBQ3RCOztBQUVBO0lBQ0ksYUFBYTtJQUNiLHNCQUFzQjtJQUN0Qix1QkFBdUI7SUFDdkIsbUJBQW1CO0FBQ3ZCOztBQUVBO0lBQ0ksYUFBYTtJQUNiLG1CQUFtQjtJQUNuQix1QkFBdUI7SUFDdkIsbUJBQW1CO0lBQ25CLHFCQUFxQjtJQUNyQixZQUFZO0FBQ2hCOztBQUVBO0lBQ0ksWUFBWTtBQUNoQiIsImZpbGUiOiJhcHAvYXV0aC9zaWdudXAvc2lnbnVwLmNvbXBvbmVudC5jc3MiLCJzb3VyY2VzQ29udGVudCI6WyJtYXQtY2FyZCB7XHJcbiAgICB3aWR0aDogMTAwdnc7XHJcbiAgICBtYXJnaW46IDRyZW0gMCAwIDA7XHJcbiAgICBkaXNwbGF5OiBmbGV4O1xyXG4gICAgZmxleC1kaXJlY3Rpb246IGNvbHVtbjtcclxuICAgIGp1c3RpZnktY29udGVudDogY2VudGVyO1xyXG4gICAgYWxpZ24taXRlbXM6IGNlbnRlcjtcclxufVxyXG5cclxuaDEge1xyXG4gICAgdGV4dC1hbGlnbjogY2VudGVyO1xyXG59XHJcblxyXG4uc2lnbnVwLWZvcm0ge1xyXG4gICAgZGlzcGxheTogZmxleDtcclxuICAgIGZsZXgtZGlyZWN0aW9uOiBjb2x1bW47XHJcbiAgICBqdXN0aWZ5LWNvbnRlbnQ6IGNlbnRlcjtcclxuICAgIGFsaWduLWl0ZW1zOiBjZW50ZXI7XHJcbn1cclxuXHJcbi5jYW5jZWwge1xyXG4gICAgZGlzcGxheTogZmxleDtcclxuICAgIGZsZXgtZGlyZWN0aW9uOiByb3c7XHJcbiAgICBqdXN0aWZ5LWNvbnRlbnQ6IGNlbnRlcjtcclxuICAgIGFsaWduLWl0ZW1zOiBjZW50ZXI7XHJcbiAgICBhbGlnbi1jb250ZW50OiBjZW50ZXI7XHJcbiAgICBtYXJnaW46IDJyZW07XHJcbn1cclxuXHJcbmRpdiA+IGJ1dHRvbiwgZGl2ID4gYSB7XHJcbiAgICBtYXJnaW46IDJyZW07XHJcbn0iXX0= */"
+module.exports = "mat-card {\r\n    width: 100vw;\r\n    margin: 4rem 0 0 0;\r\n    display: flex;\r\n    flex-direction: column;\r\n    justify-content: center;\r\n    align-items: center;\r\n}\r\n\r\nh1 {\r\n    text-align: center;\r\n}\r\n\r\n.signup-form {\r\n    display: flex;\r\n    flex-direction: column;\r\n    justify-content: center;\r\n    align-items: center;\r\n}\r\n\r\n.cancel {\r\n    display: flex;\r\n    flex-direction: row;\r\n    justify-content: center;\r\n    align-items: center;\r\n    align-content: center;\r\n    margin: 2rem;\r\n}\r\n\r\ndiv > button, div > a {\r\n    margin: 2rem;\r\n}\r\n\r\n.invalid-message {\r\n    font-size: .7rem;\r\n    color: lightslategray;\r\n}\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImFwcC9hdXRoL3NpZ251cC9zaWdudXAuY29tcG9uZW50LmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtJQUNJLFlBQVk7SUFDWixrQkFBa0I7SUFDbEIsYUFBYTtJQUNiLHNCQUFzQjtJQUN0Qix1QkFBdUI7SUFDdkIsbUJBQW1CO0FBQ3ZCOztBQUVBO0lBQ0ksa0JBQWtCO0FBQ3RCOztBQUVBO0lBQ0ksYUFBYTtJQUNiLHNCQUFzQjtJQUN0Qix1QkFBdUI7SUFDdkIsbUJBQW1CO0FBQ3ZCOztBQUVBO0lBQ0ksYUFBYTtJQUNiLG1CQUFtQjtJQUNuQix1QkFBdUI7SUFDdkIsbUJBQW1CO0lBQ25CLHFCQUFxQjtJQUNyQixZQUFZO0FBQ2hCOztBQUVBO0lBQ0ksWUFBWTtBQUNoQjs7QUFFQTtJQUNJLGdCQUFnQjtJQUNoQixxQkFBcUI7QUFDekIiLCJmaWxlIjoiYXBwL2F1dGgvc2lnbnVwL3NpZ251cC5jb21wb25lbnQuY3NzIiwic291cmNlc0NvbnRlbnQiOlsibWF0LWNhcmQge1xyXG4gICAgd2lkdGg6IDEwMHZ3O1xyXG4gICAgbWFyZ2luOiA0cmVtIDAgMCAwO1xyXG4gICAgZGlzcGxheTogZmxleDtcclxuICAgIGZsZXgtZGlyZWN0aW9uOiBjb2x1bW47XHJcbiAgICBqdXN0aWZ5LWNvbnRlbnQ6IGNlbnRlcjtcclxuICAgIGFsaWduLWl0ZW1zOiBjZW50ZXI7XHJcbn1cclxuXHJcbmgxIHtcclxuICAgIHRleHQtYWxpZ246IGNlbnRlcjtcclxufVxyXG5cclxuLnNpZ251cC1mb3JtIHtcclxuICAgIGRpc3BsYXk6IGZsZXg7XHJcbiAgICBmbGV4LWRpcmVjdGlvbjogY29sdW1uO1xyXG4gICAganVzdGlmeS1jb250ZW50OiBjZW50ZXI7XHJcbiAgICBhbGlnbi1pdGVtczogY2VudGVyO1xyXG59XHJcblxyXG4uY2FuY2VsIHtcclxuICAgIGRpc3BsYXk6IGZsZXg7XHJcbiAgICBmbGV4LWRpcmVjdGlvbjogcm93O1xyXG4gICAganVzdGlmeS1jb250ZW50OiBjZW50ZXI7XHJcbiAgICBhbGlnbi1pdGVtczogY2VudGVyO1xyXG4gICAgYWxpZ24tY29udGVudDogY2VudGVyO1xyXG4gICAgbWFyZ2luOiAycmVtO1xyXG59XHJcblxyXG5kaXYgPiBidXR0b24sIGRpdiA+IGEge1xyXG4gICAgbWFyZ2luOiAycmVtO1xyXG59XHJcblxyXG4uaW52YWxpZC1tZXNzYWdlIHtcclxuICAgIGZvbnQtc2l6ZTogLjdyZW07XHJcbiAgICBjb2xvcjogbGlnaHRzbGF0ZWdyYXk7XHJcbn0iXX0= */"
 
 /***/ }),
 
@@ -661,8 +659,9 @@ module.exports = "mat-card {\r\n    width: 100vw;\r\n    margin: 4rem 0 0 0;\r\n
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SignupComponent", function() { return SignupComponent; });
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _auth_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../auth.service */ "./src/app/auth/auth.service.ts");
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
+/* harmony import */ var _auth_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../auth.service */ "./src/app/auth/auth.service.ts");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -672,41 +671,7 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 var __metadata = (undefined && undefined.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var __awaiter = (undefined && undefined.__awaiter) || function (thisArg, _arguments, P, generator) {
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
-var __generator = (undefined && undefined.__generator) || function (thisArg, body) {
-    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
-    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
-    function verb(n) { return function (v) { return step([n, v]); }; }
-    function step(op) {
-        if (f) throw new TypeError("Generator is already executing.");
-        while (_) try {
-            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
-            if (y = 0, t) op = [op[0] & 2, t.value];
-            switch (op[0]) {
-                case 0: case 1: t = op; break;
-                case 4: _.label++; return { value: op[1], done: false };
-                case 5: _.label++; y = op[1]; op = [0]; continue;
-                case 7: op = _.ops.pop(); _.trys.pop(); continue;
-                default:
-                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
-                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
-                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
-                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
-                    if (t[2]) _.ops.pop();
-                    _.trys.pop(); continue;
-            }
-            op = body.call(thisArg, _);
-        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
-        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
-    }
-};
+
 
 
 
@@ -716,23 +681,16 @@ var SignupComponent = /** @class */ (function () {
         this.router = router;
     }
     SignupComponent.prototype.ngOnInit = function () {
-    };
-    SignupComponent.prototype.onSignUp = function (form) {
-        return __awaiter(this, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0:
-                        if (form.invalid) {
-                            return [2 /*return*/];
-                        }
-                        return [4 /*yield*/, this.authService.createUser(form.value.email, form.value.password)];
-                    case 1:
-                        _a.sent();
-                        this.router.navigate(['/signin']);
-                        return [2 /*return*/];
-                }
-            });
+        this.signupForm = new _angular_forms__WEBPACK_IMPORTED_MODULE_1__["FormGroup"]({
+            'email': new _angular_forms__WEBPACK_IMPORTED_MODULE_1__["FormControl"](null, [_angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required, _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].email]),
+            'userName': new _angular_forms__WEBPACK_IMPORTED_MODULE_1__["FormControl"](null, _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required),
+            'password': new _angular_forms__WEBPACK_IMPORTED_MODULE_1__["FormControl"](null, _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required),
+            'verifyPassword': new _angular_forms__WEBPACK_IMPORTED_MODULE_1__["FormControl"](null, _angular_forms__WEBPACK_IMPORTED_MODULE_1__["Validators"].required)
         });
+    };
+    SignupComponent.prototype.onSubmit = function () {
+        console.log(this.signupForm);
+        this.authService.createUser(this.signupForm.value.email, this.signupForm.value.userName, this.signupForm.value.password);
     };
     SignupComponent = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_0__["Component"])({
@@ -740,7 +698,7 @@ var SignupComponent = /** @class */ (function () {
             template: __webpack_require__(/*! raw-loader!./signup.component.html */ "./node_modules/raw-loader/index.js!./src/app/auth/signup/signup.component.html"),
             styles: [__webpack_require__(/*! ./signup.component.css */ "./src/app/auth/signup/signup.component.css")]
         }),
-        __metadata("design:paramtypes", [_auth_service__WEBPACK_IMPORTED_MODULE_1__["AuthService"], _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"]])
+        __metadata("design:paramtypes", [_auth_service__WEBPACK_IMPORTED_MODULE_2__["AuthService"], _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"]])
     ], SignupComponent);
     return SignupComponent;
 }());
@@ -888,7 +846,6 @@ var CreateRoutineComponent = /** @class */ (function () {
                     case 0: return [4 /*yield*/, this.routineService.addRoutine(this.createRoutineForm.value['routineTitle'], this.createRoutineForm.value['routineExercises'], this.selectedIcon)];
                     case 1:
                         _a.sent();
-                        this.router.navigate(['/routines']);
                         return [2 /*return*/];
                 }
             });
@@ -1126,7 +1083,7 @@ var LogWorkOutComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".nav-container {\r\n  width:100vh;\r\n  height: 4rem;\r\n  position: fixed;\r\n  top: 0;\r\n  right: 0;\r\n  background: black;\r\n}\r\n\r\n.menu-btn {\r\n  position: absolute;\r\n  top: 50%;\r\n  right: 16px;\r\n  -webkit-transform: translate(-50%, -50%);\r\n          transform: translate(-50%, -50%);\r\n  z-index: 5;\r\n  cursor: pointer;\r\n}\r\n\r\n.btn-line {\r\n  width: 28px;\r\n  height: 3px;\r\n  margin: 0 0 5px 0;\r\n  background: rgb(193,193,193);\r\n  transition: background 1500ms;\r\n}\r\n\r\ndiv.show div.btn-line {\r\n  background: black;\r\n}\r\n\r\n.menu-dropdown-container {\r\n  position: absolute;\r\n  top: 0;\r\n  width: 100%;\r\n  opacity: 0.95;\r\n  visibility: hidden;\r\n  transition: visibility 550ms;\r\n}\r\n\r\n.show {\r\n  visibility: visible;\r\n}\r\n\r\n.nav-menu, .menu-branding  {\r\n  position: fixed;\r\n  display: flex;\r\n  flex-direction: column;\r\n  flex-wrap: wrap;\r\n  align-items: center;\r\n  justify-content: center;\r\n  width: 50vw;\r\n  height: 100vh;\r\n  overflow: hidden;\r\n  margin: 0;\r\n  padding: 0;\r\n  background: rgba(255, 255, 255, .8);\r\n  list-style: none;\r\n  transition: -webkit-transform 500ms;\r\n  transition: transform 500ms;\r\n  transition: transform 500ms, -webkit-transform 500ms;\r\n}\r\n\r\n.nav-menu {\r\n  right: 0;\r\n  -webkit-transform: translate3d(0, -100%, 0);\r\n          transform: translate3d(0, -100%, 0);\r\n}\r\n\r\n.menu-branding {\r\n  left: 0;\r\n  -webkit-transform: translate3d(0, 100%, 0);\r\n          transform: translate3d(0, 100%, 0);\r\n}\r\n\r\nnav.show div.menu-branding,\r\nnav.show ul.nav-menu {\r\n  -webkit-transform: translate3d(0, 0, 0);\r\n          transform: translate3d(0, 0, 0);\r\n}\r\n\r\n.portrait {\r\n  height: 100px;\r\n  width: 100px;\r\n  /*background: url('../../assets/ayodlo.jpg');*/\r\n  background-position: center center !important;\r\n  background-size: cover !important;\r\n  border-radius: 50%;\r\n  border: solid 3px black;\r\n}\r\n\r\ninput[type=\"file\"] {\r\n  display: none;\r\n}\r\n\r\n.nav-menu-item a,\r\n.log-out,\r\n.user-name,\r\n.portrait {\r\n  text-transform: uppercase;\r\n  color: black;\r\n  cursor: pointer;\r\n  display: inline-block;\r\n  transition: 300ms;\r\n  margin: .4rem 0;\r\n}\r\n\r\n.nav-menu-item a:hover,\r\n.log-out:hover,\r\n.user-name:hover,\r\n.portrait:hover {\r\n  color: rgb(244,67,54);\r\n  border-color:rgb(244,67,54);\r\n  text-decoration: none;\r\n}\r\n\r\n.portrait:hover {\r\n  background: url('upload-image.jpg'), url('ayodlo.jpg');\r\n  background-color: rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 1);\r\n  background-position: center center, center center;\r\n  background-size: cover, cover;\r\n}\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImFwcC9uYXYtYmFyL25hdi1iYXIuY29tcG9uZW50LmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNFLFdBQVc7RUFDWCxZQUFZO0VBQ1osZUFBZTtFQUNmLE1BQU07RUFDTixRQUFRO0VBQ1IsaUJBQWlCO0FBQ25COztBQUVBO0VBQ0Usa0JBQWtCO0VBQ2xCLFFBQVE7RUFDUixXQUFXO0VBQ1gsd0NBQWdDO1VBQWhDLGdDQUFnQztFQUNoQyxVQUFVO0VBQ1YsZUFBZTtBQUNqQjs7QUFFQTtFQUNFLFdBQVc7RUFDWCxXQUFXO0VBQ1gsaUJBQWlCO0VBQ2pCLDRCQUE0QjtFQUM1Qiw2QkFBNkI7QUFDL0I7O0FBRUE7RUFDRSxpQkFBaUI7QUFDbkI7O0FBRUE7RUFDRSxrQkFBa0I7RUFDbEIsTUFBTTtFQUNOLFdBQVc7RUFDWCxhQUFhO0VBQ2Isa0JBQWtCO0VBQ2xCLDRCQUE0QjtBQUM5Qjs7QUFFQTtFQUNFLG1CQUFtQjtBQUNyQjs7QUFFQTtFQUNFLGVBQWU7RUFDZixhQUFhO0VBQ2Isc0JBQXNCO0VBQ3RCLGVBQWU7RUFDZixtQkFBbUI7RUFDbkIsdUJBQXVCO0VBQ3ZCLFdBQVc7RUFDWCxhQUFhO0VBQ2IsZ0JBQWdCO0VBQ2hCLFNBQVM7RUFDVCxVQUFVO0VBQ1YsbUNBQW1DO0VBQ25DLGdCQUFnQjtFQUNoQixtQ0FBMkI7RUFBM0IsMkJBQTJCO0VBQTNCLG9EQUEyQjtBQUM3Qjs7QUFFQTtFQUNFLFFBQVE7RUFDUiwyQ0FBbUM7VUFBbkMsbUNBQW1DO0FBQ3JDOztBQUVBO0VBQ0UsT0FBTztFQUNQLDBDQUFrQztVQUFsQyxrQ0FBa0M7QUFDcEM7O0FBRUE7O0VBRUUsdUNBQStCO1VBQS9CLCtCQUErQjtBQUNqQzs7QUFFQTtFQUNFLGFBQWE7RUFDYixZQUFZO0VBQ1osOENBQThDO0VBQzlDLDZDQUE2QztFQUM3QyxpQ0FBaUM7RUFDakMsa0JBQWtCO0VBQ2xCLHVCQUF1QjtBQUN6Qjs7QUFFQTtFQUNFLGFBQWE7QUFDZjs7QUFFQTs7OztFQUlFLHlCQUF5QjtFQUN6QixZQUFZO0VBQ1osZUFBZTtFQUNmLHFCQUFxQjtFQUNyQixpQkFBaUI7RUFDakIsZUFBZTtBQUNqQjs7QUFFQTs7OztFQUlFLHFCQUFxQjtFQUNyQiwyQkFBMkI7RUFDM0IscUJBQXFCO0FBQ3ZCOztBQUVBO0VBQ0Usc0RBQWdGO0VBQ2hGLGtFQUFrRTtFQUNsRSxpREFBaUQ7RUFDakQsNkJBQTZCO0FBQy9CIiwiZmlsZSI6ImFwcC9uYXYtYmFyL25hdi1iYXIuY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbIi5uYXYtY29udGFpbmVyIHtcclxuICB3aWR0aDoxMDB2aDtcclxuICBoZWlnaHQ6IDRyZW07XHJcbiAgcG9zaXRpb246IGZpeGVkO1xyXG4gIHRvcDogMDtcclxuICByaWdodDogMDtcclxuICBiYWNrZ3JvdW5kOiBibGFjaztcclxufVxyXG5cclxuLm1lbnUtYnRuIHtcclxuICBwb3NpdGlvbjogYWJzb2x1dGU7XHJcbiAgdG9wOiA1MCU7XHJcbiAgcmlnaHQ6IDE2cHg7XHJcbiAgdHJhbnNmb3JtOiB0cmFuc2xhdGUoLTUwJSwgLTUwJSk7XHJcbiAgei1pbmRleDogNTtcclxuICBjdXJzb3I6IHBvaW50ZXI7XHJcbn1cclxuXHJcbi5idG4tbGluZSB7XHJcbiAgd2lkdGg6IDI4cHg7XHJcbiAgaGVpZ2h0OiAzcHg7XHJcbiAgbWFyZ2luOiAwIDAgNXB4IDA7XHJcbiAgYmFja2dyb3VuZDogcmdiKDE5MywxOTMsMTkzKTtcclxuICB0cmFuc2l0aW9uOiBiYWNrZ3JvdW5kIDE1MDBtcztcclxufVxyXG5cclxuZGl2LnNob3cgZGl2LmJ0bi1saW5lIHtcclxuICBiYWNrZ3JvdW5kOiBibGFjaztcclxufVxyXG5cclxuLm1lbnUtZHJvcGRvd24tY29udGFpbmVyIHtcclxuICBwb3NpdGlvbjogYWJzb2x1dGU7XHJcbiAgdG9wOiAwO1xyXG4gIHdpZHRoOiAxMDAlO1xyXG4gIG9wYWNpdHk6IDAuOTU7XHJcbiAgdmlzaWJpbGl0eTogaGlkZGVuO1xyXG4gIHRyYW5zaXRpb246IHZpc2liaWxpdHkgNTUwbXM7XHJcbn1cclxuXHJcbi5zaG93IHtcclxuICB2aXNpYmlsaXR5OiB2aXNpYmxlO1xyXG59XHJcblxyXG4ubmF2LW1lbnUsIC5tZW51LWJyYW5kaW5nICB7XHJcbiAgcG9zaXRpb246IGZpeGVkO1xyXG4gIGRpc3BsYXk6IGZsZXg7XHJcbiAgZmxleC1kaXJlY3Rpb246IGNvbHVtbjtcclxuICBmbGV4LXdyYXA6IHdyYXA7XHJcbiAgYWxpZ24taXRlbXM6IGNlbnRlcjtcclxuICBqdXN0aWZ5LWNvbnRlbnQ6IGNlbnRlcjtcclxuICB3aWR0aDogNTB2dztcclxuICBoZWlnaHQ6IDEwMHZoO1xyXG4gIG92ZXJmbG93OiBoaWRkZW47XHJcbiAgbWFyZ2luOiAwO1xyXG4gIHBhZGRpbmc6IDA7XHJcbiAgYmFja2dyb3VuZDogcmdiYSgyNTUsIDI1NSwgMjU1LCAuOCk7XHJcbiAgbGlzdC1zdHlsZTogbm9uZTtcclxuICB0cmFuc2l0aW9uOiB0cmFuc2Zvcm0gNTAwbXM7XHJcbn1cclxuXHJcbi5uYXYtbWVudSB7XHJcbiAgcmlnaHQ6IDA7XHJcbiAgdHJhbnNmb3JtOiB0cmFuc2xhdGUzZCgwLCAtMTAwJSwgMCk7XHJcbn1cclxuXHJcbi5tZW51LWJyYW5kaW5nIHtcclxuICBsZWZ0OiAwO1xyXG4gIHRyYW5zZm9ybTogdHJhbnNsYXRlM2QoMCwgMTAwJSwgMCk7XHJcbn1cclxuXHJcbm5hdi5zaG93IGRpdi5tZW51LWJyYW5kaW5nLFxyXG5uYXYuc2hvdyB1bC5uYXYtbWVudSB7XHJcbiAgdHJhbnNmb3JtOiB0cmFuc2xhdGUzZCgwLCAwLCAwKTtcclxufVxyXG5cclxuLnBvcnRyYWl0IHtcclxuICBoZWlnaHQ6IDEwMHB4O1xyXG4gIHdpZHRoOiAxMDBweDtcclxuICAvKmJhY2tncm91bmQ6IHVybCgnLi4vLi4vYXNzZXRzL2F5b2Rsby5qcGcnKTsqL1xyXG4gIGJhY2tncm91bmQtcG9zaXRpb246IGNlbnRlciBjZW50ZXIgIWltcG9ydGFudDtcclxuICBiYWNrZ3JvdW5kLXNpemU6IGNvdmVyICFpbXBvcnRhbnQ7XHJcbiAgYm9yZGVyLXJhZGl1czogNTAlO1xyXG4gIGJvcmRlcjogc29saWQgM3B4IGJsYWNrO1xyXG59XHJcblxyXG5pbnB1dFt0eXBlPVwiZmlsZVwiXSB7XHJcbiAgZGlzcGxheTogbm9uZTtcclxufVxyXG5cclxuLm5hdi1tZW51LWl0ZW0gYSxcclxuLmxvZy1vdXQsXHJcbi51c2VyLW5hbWUsXHJcbi5wb3J0cmFpdCB7XHJcbiAgdGV4dC10cmFuc2Zvcm06IHVwcGVyY2FzZTtcclxuICBjb2xvcjogYmxhY2s7XHJcbiAgY3Vyc29yOiBwb2ludGVyO1xyXG4gIGRpc3BsYXk6IGlubGluZS1ibG9jaztcclxuICB0cmFuc2l0aW9uOiAzMDBtcztcclxuICBtYXJnaW46IC40cmVtIDA7XHJcbn1cclxuXHJcbi5uYXYtbWVudS1pdGVtIGE6aG92ZXIsXHJcbi5sb2ctb3V0OmhvdmVyLFxyXG4udXNlci1uYW1lOmhvdmVyLFxyXG4ucG9ydHJhaXQ6aG92ZXIge1xyXG4gIGNvbG9yOiByZ2IoMjQ0LDY3LDU0KTtcclxuICBib3JkZXItY29sb3I6cmdiKDI0NCw2Nyw1NCk7XHJcbiAgdGV4dC1kZWNvcmF0aW9uOiBub25lO1xyXG59XHJcblxyXG4ucG9ydHJhaXQ6aG92ZXIge1xyXG4gIGJhY2tncm91bmQ6IHVybCgnLi4vLi4vYXNzZXRzL3VwbG9hZC1pbWFnZS5qcGcnKSwgdXJsKCcuLi8uLi9hc3NldHMvYXlvZGxvLmpwZycpO1xyXG4gIGJhY2tncm91bmQtY29sb3I6IHJnYmEoMjU1LCAyNTUsIDI1NSwgMC40KSwgcmdiYSgyNTUsIDI1NSwgMjU1LCAxKTtcclxuICBiYWNrZ3JvdW5kLXBvc2l0aW9uOiBjZW50ZXIgY2VudGVyLCBjZW50ZXIgY2VudGVyO1xyXG4gIGJhY2tncm91bmQtc2l6ZTogY292ZXIsIGNvdmVyO1xyXG59Il19 */"
+module.exports = ".nav-container {\r\n  width:100%;\r\n  height: 4rem;\r\n  position: fixed;\r\n  top: 0;\r\n  right: 0;\r\n  background: black;\r\n}\r\n\r\n.menu-btn {\r\n  position: absolute;\r\n  top: 50%;\r\n  right: 16px;\r\n  -webkit-transform: translate(-50%, -50%);\r\n          transform: translate(-50%, -50%);\r\n  z-index: 5;\r\n  cursor: pointer;\r\n}\r\n\r\n.btn-line {\r\n  width: 28px;\r\n  height: 3px;\r\n  margin: 0 0 5px 0;\r\n  background: rgb(193,193,193);\r\n  transition: background 1500ms;\r\n}\r\n\r\ndiv.show div.btn-line {\r\n  background: black;\r\n}\r\n\r\n.menu-dropdown-container {\r\n  position: absolute;\r\n  top: 0;\r\n  width: 100%;\r\n  opacity: 0.95;\r\n  visibility: hidden;\r\n  transition: visibility 550ms;\r\n}\r\n\r\n.show {\r\n  visibility: visible;\r\n}\r\n\r\n.nav-menu, .menu-branding  {\r\n  position: fixed;\r\n  display: flex;\r\n  flex-direction: column;\r\n  flex-wrap: wrap;\r\n  align-items: center;\r\n  justify-content: center;\r\n  width: 50vw;\r\n  height: 100vh;\r\n  overflow: hidden;\r\n  margin: 0;\r\n  padding: 0;\r\n  background: rgba(255, 255, 255, .8);\r\n  list-style: none;\r\n  transition: -webkit-transform 500ms;\r\n  transition: transform 500ms;\r\n  transition: transform 500ms, -webkit-transform 500ms;\r\n}\r\n\r\n.nav-menu {\r\n  right: 0;\r\n  -webkit-transform: translate3d(0, -100%, 0);\r\n          transform: translate3d(0, -100%, 0);\r\n}\r\n\r\n.menu-branding {\r\n  left: 0;\r\n  -webkit-transform: translate3d(0, 100%, 0);\r\n          transform: translate3d(0, 100%, 0);\r\n}\r\n\r\nnav.show div.menu-branding,\r\nnav.show ul.nav-menu {\r\n  -webkit-transform: translate3d(0, 0, 0);\r\n          transform: translate3d(0, 0, 0);\r\n}\r\n\r\n.portrait {\r\n  height: 100px;\r\n  width: 100px;\r\n  /*background: url('../../assets/ayodlo.jpg');*/\r\n  background-position: center center !important;\r\n  background-size: cover !important;\r\n  border-radius: 50%;\r\n  border: solid 3px black;\r\n}\r\n\r\ninput[type=\"file\"] {\r\n  display: none;\r\n}\r\n\r\n.nav-menu-item a,\r\n.log-out,\r\n.user-name,\r\n.portrait {\r\n  text-transform: uppercase;\r\n  color: black;\r\n  cursor: pointer;\r\n  display: inline-block;\r\n  transition: 300ms;\r\n  margin: .4rem 0;\r\n}\r\n\r\n.nav-menu-item a:hover,\r\n.log-out:hover,\r\n.user-name:hover,\r\n.portrait:hover {\r\n  color: rgb(244,67,54);\r\n  border-color:rgb(244,67,54);\r\n  text-decoration: none;\r\n}\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImFwcC9uYXYtYmFyL25hdi1iYXIuY29tcG9uZW50LmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNFLFVBQVU7RUFDVixZQUFZO0VBQ1osZUFBZTtFQUNmLE1BQU07RUFDTixRQUFRO0VBQ1IsaUJBQWlCO0FBQ25COztBQUVBO0VBQ0Usa0JBQWtCO0VBQ2xCLFFBQVE7RUFDUixXQUFXO0VBQ1gsd0NBQWdDO1VBQWhDLGdDQUFnQztFQUNoQyxVQUFVO0VBQ1YsZUFBZTtBQUNqQjs7QUFFQTtFQUNFLFdBQVc7RUFDWCxXQUFXO0VBQ1gsaUJBQWlCO0VBQ2pCLDRCQUE0QjtFQUM1Qiw2QkFBNkI7QUFDL0I7O0FBRUE7RUFDRSxpQkFBaUI7QUFDbkI7O0FBRUE7RUFDRSxrQkFBa0I7RUFDbEIsTUFBTTtFQUNOLFdBQVc7RUFDWCxhQUFhO0VBQ2Isa0JBQWtCO0VBQ2xCLDRCQUE0QjtBQUM5Qjs7QUFFQTtFQUNFLG1CQUFtQjtBQUNyQjs7QUFFQTtFQUNFLGVBQWU7RUFDZixhQUFhO0VBQ2Isc0JBQXNCO0VBQ3RCLGVBQWU7RUFDZixtQkFBbUI7RUFDbkIsdUJBQXVCO0VBQ3ZCLFdBQVc7RUFDWCxhQUFhO0VBQ2IsZ0JBQWdCO0VBQ2hCLFNBQVM7RUFDVCxVQUFVO0VBQ1YsbUNBQW1DO0VBQ25DLGdCQUFnQjtFQUNoQixtQ0FBMkI7RUFBM0IsMkJBQTJCO0VBQTNCLG9EQUEyQjtBQUM3Qjs7QUFFQTtFQUNFLFFBQVE7RUFDUiwyQ0FBbUM7VUFBbkMsbUNBQW1DO0FBQ3JDOztBQUVBO0VBQ0UsT0FBTztFQUNQLDBDQUFrQztVQUFsQyxrQ0FBa0M7QUFDcEM7O0FBRUE7O0VBRUUsdUNBQStCO1VBQS9CLCtCQUErQjtBQUNqQzs7QUFFQTtFQUNFLGFBQWE7RUFDYixZQUFZO0VBQ1osOENBQThDO0VBQzlDLDZDQUE2QztFQUM3QyxpQ0FBaUM7RUFDakMsa0JBQWtCO0VBQ2xCLHVCQUF1QjtBQUN6Qjs7QUFFQTtFQUNFLGFBQWE7QUFDZjs7QUFFQTs7OztFQUlFLHlCQUF5QjtFQUN6QixZQUFZO0VBQ1osZUFBZTtFQUNmLHFCQUFxQjtFQUNyQixpQkFBaUI7RUFDakIsZUFBZTtBQUNqQjs7QUFFQTs7OztFQUlFLHFCQUFxQjtFQUNyQiwyQkFBMkI7RUFDM0IscUJBQXFCO0FBQ3ZCIiwiZmlsZSI6ImFwcC9uYXYtYmFyL25hdi1iYXIuY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbIi5uYXYtY29udGFpbmVyIHtcclxuICB3aWR0aDoxMDAlO1xyXG4gIGhlaWdodDogNHJlbTtcclxuICBwb3NpdGlvbjogZml4ZWQ7XHJcbiAgdG9wOiAwO1xyXG4gIHJpZ2h0OiAwO1xyXG4gIGJhY2tncm91bmQ6IGJsYWNrO1xyXG59XHJcblxyXG4ubWVudS1idG4ge1xyXG4gIHBvc2l0aW9uOiBhYnNvbHV0ZTtcclxuICB0b3A6IDUwJTtcclxuICByaWdodDogMTZweDtcclxuICB0cmFuc2Zvcm06IHRyYW5zbGF0ZSgtNTAlLCAtNTAlKTtcclxuICB6LWluZGV4OiA1O1xyXG4gIGN1cnNvcjogcG9pbnRlcjtcclxufVxyXG5cclxuLmJ0bi1saW5lIHtcclxuICB3aWR0aDogMjhweDtcclxuICBoZWlnaHQ6IDNweDtcclxuICBtYXJnaW46IDAgMCA1cHggMDtcclxuICBiYWNrZ3JvdW5kOiByZ2IoMTkzLDE5MywxOTMpO1xyXG4gIHRyYW5zaXRpb246IGJhY2tncm91bmQgMTUwMG1zO1xyXG59XHJcblxyXG5kaXYuc2hvdyBkaXYuYnRuLWxpbmUge1xyXG4gIGJhY2tncm91bmQ6IGJsYWNrO1xyXG59XHJcblxyXG4ubWVudS1kcm9wZG93bi1jb250YWluZXIge1xyXG4gIHBvc2l0aW9uOiBhYnNvbHV0ZTtcclxuICB0b3A6IDA7XHJcbiAgd2lkdGg6IDEwMCU7XHJcbiAgb3BhY2l0eTogMC45NTtcclxuICB2aXNpYmlsaXR5OiBoaWRkZW47XHJcbiAgdHJhbnNpdGlvbjogdmlzaWJpbGl0eSA1NTBtcztcclxufVxyXG5cclxuLnNob3cge1xyXG4gIHZpc2liaWxpdHk6IHZpc2libGU7XHJcbn1cclxuXHJcbi5uYXYtbWVudSwgLm1lbnUtYnJhbmRpbmcgIHtcclxuICBwb3NpdGlvbjogZml4ZWQ7XHJcbiAgZGlzcGxheTogZmxleDtcclxuICBmbGV4LWRpcmVjdGlvbjogY29sdW1uO1xyXG4gIGZsZXgtd3JhcDogd3JhcDtcclxuICBhbGlnbi1pdGVtczogY2VudGVyO1xyXG4gIGp1c3RpZnktY29udGVudDogY2VudGVyO1xyXG4gIHdpZHRoOiA1MHZ3O1xyXG4gIGhlaWdodDogMTAwdmg7XHJcbiAgb3ZlcmZsb3c6IGhpZGRlbjtcclxuICBtYXJnaW46IDA7XHJcbiAgcGFkZGluZzogMDtcclxuICBiYWNrZ3JvdW5kOiByZ2JhKDI1NSwgMjU1LCAyNTUsIC44KTtcclxuICBsaXN0LXN0eWxlOiBub25lO1xyXG4gIHRyYW5zaXRpb246IHRyYW5zZm9ybSA1MDBtcztcclxufVxyXG5cclxuLm5hdi1tZW51IHtcclxuICByaWdodDogMDtcclxuICB0cmFuc2Zvcm06IHRyYW5zbGF0ZTNkKDAsIC0xMDAlLCAwKTtcclxufVxyXG5cclxuLm1lbnUtYnJhbmRpbmcge1xyXG4gIGxlZnQ6IDA7XHJcbiAgdHJhbnNmb3JtOiB0cmFuc2xhdGUzZCgwLCAxMDAlLCAwKTtcclxufVxyXG5cclxubmF2LnNob3cgZGl2Lm1lbnUtYnJhbmRpbmcsXHJcbm5hdi5zaG93IHVsLm5hdi1tZW51IHtcclxuICB0cmFuc2Zvcm06IHRyYW5zbGF0ZTNkKDAsIDAsIDApO1xyXG59XHJcblxyXG4ucG9ydHJhaXQge1xyXG4gIGhlaWdodDogMTAwcHg7XHJcbiAgd2lkdGg6IDEwMHB4O1xyXG4gIC8qYmFja2dyb3VuZDogdXJsKCcuLi8uLi9hc3NldHMvYXlvZGxvLmpwZycpOyovXHJcbiAgYmFja2dyb3VuZC1wb3NpdGlvbjogY2VudGVyIGNlbnRlciAhaW1wb3J0YW50O1xyXG4gIGJhY2tncm91bmQtc2l6ZTogY292ZXIgIWltcG9ydGFudDtcclxuICBib3JkZXItcmFkaXVzOiA1MCU7XHJcbiAgYm9yZGVyOiBzb2xpZCAzcHggYmxhY2s7XHJcbn1cclxuXHJcbmlucHV0W3R5cGU9XCJmaWxlXCJdIHtcclxuICBkaXNwbGF5OiBub25lO1xyXG59XHJcblxyXG4ubmF2LW1lbnUtaXRlbSBhLFxyXG4ubG9nLW91dCxcclxuLnVzZXItbmFtZSxcclxuLnBvcnRyYWl0IHtcclxuICB0ZXh0LXRyYW5zZm9ybTogdXBwZXJjYXNlO1xyXG4gIGNvbG9yOiBibGFjaztcclxuICBjdXJzb3I6IHBvaW50ZXI7XHJcbiAgZGlzcGxheTogaW5saW5lLWJsb2NrO1xyXG4gIHRyYW5zaXRpb246IDMwMG1zO1xyXG4gIG1hcmdpbjogLjRyZW0gMDtcclxufVxyXG5cclxuLm5hdi1tZW51LWl0ZW0gYTpob3ZlcixcclxuLmxvZy1vdXQ6aG92ZXIsXHJcbi51c2VyLW5hbWU6aG92ZXIsXHJcbi5wb3J0cmFpdDpob3ZlciB7XHJcbiAgY29sb3I6IHJnYigyNDQsNjcsNTQpO1xyXG4gIGJvcmRlci1jb2xvcjpyZ2IoMjQ0LDY3LDU0KTtcclxuICB0ZXh0LWRlY29yYXRpb246IG5vbmU7XHJcbn0iXX0= */"
 
 /***/ }),
 
@@ -1153,41 +1110,6 @@ var __decorate = (undefined && undefined.__decorate) || function (decorators, ta
 var __metadata = (undefined && undefined.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var __awaiter = (undefined && undefined.__awaiter) || function (thisArg, _arguments, P, generator) {
-    return new (P || (P = Promise))(function (resolve, reject) {
-        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
-        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
-        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
-        step((generator = generator.apply(thisArg, _arguments || [])).next());
-    });
-};
-var __generator = (undefined && undefined.__generator) || function (thisArg, body) {
-    var _ = { label: 0, sent: function() { if (t[0] & 1) throw t[1]; return t[1]; }, trys: [], ops: [] }, f, y, t, g;
-    return g = { next: verb(0), "throw": verb(1), "return": verb(2) }, typeof Symbol === "function" && (g[Symbol.iterator] = function() { return this; }), g;
-    function verb(n) { return function (v) { return step([n, v]); }; }
-    function step(op) {
-        if (f) throw new TypeError("Generator is already executing.");
-        while (_) try {
-            if (f = 1, y && (t = op[0] & 2 ? y["return"] : op[0] ? y["throw"] || ((t = y["return"]) && t.call(y), 0) : y.next) && !(t = t.call(y, op[1])).done) return t;
-            if (y = 0, t) op = [op[0] & 2, t.value];
-            switch (op[0]) {
-                case 0: case 1: t = op; break;
-                case 4: _.label++; return { value: op[1], done: false };
-                case 5: _.label++; y = op[1]; op = [0]; continue;
-                case 7: op = _.ops.pop(); _.trys.pop(); continue;
-                default:
-                    if (!(t = _.trys, t = t.length > 0 && t[t.length - 1]) && (op[0] === 6 || op[0] === 2)) { _ = 0; continue; }
-                    if (op[0] === 3 && (!t || (op[1] > t[0] && op[1] < t[3]))) { _.label = op[1]; break; }
-                    if (op[0] === 6 && _.label < t[1]) { _.label = t[1]; t = op; break; }
-                    if (t && _.label < t[2]) { _.label = t[2]; _.ops.push(op); break; }
-                    if (t[2]) _.ops.pop();
-                    _.trys.pop(); continue;
-            }
-            op = body.call(thisArg, _);
-        } catch (e) { op = [6, e]; y = 0; } finally { f = t = 0; }
-        if (op[0] & 5) throw op[1]; return { value: op[0] ? op[1] : void 0, done: true };
-    }
-};
 
 
 
@@ -1211,7 +1133,7 @@ var NavBarComponent = /** @class */ (function () {
     };
     NavBarComponent.prototype.ngOnInit = function () {
         var _this = this;
-        this.getAvatar();
+        this.getUser();
         this.userIsAuthenticated = this.authService.getIsAuth();
         this.authListenerSubs = this.authService.getAuthStatusListener().subscribe(function (isAuthenticated) {
             _this.userIsAuthenticated = isAuthenticated;
@@ -1225,22 +1147,19 @@ var NavBarComponent = /** @class */ (function () {
         this.selectedFile = event.target.files[0];
         var fd = new FormData();
         fd.append('myAvatar', this.selectedFile);
-        this.http.post('http://localhost:8080/api/avatar', fd)
+        this.http.post('/api/getUser', fd)
             .subscribe(function (res) {
-            _this.getAvatar();
+            _this.getUser();
         });
     };
-    NavBarComponent.prototype.getAvatar = function () {
+    NavBarComponent.prototype.getUser = function () {
         var _this = this;
-        this.http.get('http://localhost:8080/api/avatar')
-            .subscribe(function (res) { return __awaiter(_this, void 0, void 0, function () {
-            return __generator(this, function (_a) {
-                this.avatar = res.avatar;
-                this.avatar = this.avatar.split('\\')[1];
-                console.log(this.avatar);
-                return [2 /*return*/];
-            });
-        }); });
+        this.http.get('/api/getUser')
+            .subscribe(function (res) {
+            _this.avatar = res.avatar;
+            _this.avatar = _this.avatar.split('\\')[1];
+            _this.userName = res.userName;
+        });
     };
     NavBarComponent.prototype.ngOnDestroy = function () {
         this.authListenerSubs.unsubscribe();
@@ -1267,7 +1186,7 @@ var NavBarComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".main {\r\n  margin: 7rem 0 0 0;\r\n  box-sizing: border-box;\r\n  display: flex;\r\n  flex-direction: column;\r\n  justify-content: flex-start;\r\n  align-items: center;\r\n  align-content: space-around;\r\n  height: 100vh;\r\n}\r\n\r\nh3.routines-header {\r\n  text-transform: uppercase;\r\n}\r\n\r\n.add-routine-container {\r\n  width: 80vw;\r\n}\r\n\r\n.add-routine-container button {\r\n  width: 100%;\r\n  background: white;\r\n  color: black;\r\n  box-shadow: 0 10px 6px -6px #777;\r\n}\r\n\r\n.routine-list {\r\n  margin: .5rem 0;\r\n  display: flex;\r\n  flex-direction: column;\r\n  justify-content: center;\r\n  align-items: center;\r\n  box-shadow: 0 10px 6px -6px #777;\r\n}\r\n\r\n.routine-list-item {\r\n  background: white;\r\n  padding: .5rem;\r\n  display: flex;\r\n  flex-direction: column;\r\n  justify-content: center;\r\n  align-items: center;\r\n}\r\n\r\n.routine-list-item-button-group {\r\n  width: 100%;\r\n  margin-bottom: 1rem;\r\n  display: flex;\r\n  flex-direction: row;\r\n  justify-content: center;\r\n  align-items: center;\r\n}\r\n\r\n.routine-list-item-button-group button {\r\n  margin: 0 .2rem;\r\n  box-shadow: 0 10px 6px -6px #777;\r\n}\r\n\r\n.routine-list-item-button-group__edit-button {\r\n  color: white;\r\n  background: black;\r\n}\r\n\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImFwcC9yb3V0aW5lcy9yb3V0aW5lcy5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0Usa0JBQWtCO0VBQ2xCLHNCQUFzQjtFQUN0QixhQUFhO0VBQ2Isc0JBQXNCO0VBQ3RCLDJCQUEyQjtFQUMzQixtQkFBbUI7RUFDbkIsMkJBQTJCO0VBQzNCLGFBQWE7QUFDZjs7QUFFQTtFQUNFLHlCQUF5QjtBQUMzQjs7QUFFQTtFQUNFLFdBQVc7QUFDYjs7QUFFQTtFQUNFLFdBQVc7RUFDWCxpQkFBaUI7RUFDakIsWUFBWTtFQUdaLGdDQUFnQztBQUNsQzs7QUFFQTtFQUNFLGVBQWU7RUFDZixhQUFhO0VBQ2Isc0JBQXNCO0VBQ3RCLHVCQUF1QjtFQUN2QixtQkFBbUI7RUFHbkIsZ0NBQWdDO0FBQ2xDOztBQUVBO0VBQ0UsaUJBQWlCO0VBQ2pCLGNBQWM7RUFDZCxhQUFhO0VBQ2Isc0JBQXNCO0VBQ3RCLHVCQUF1QjtFQUN2QixtQkFBbUI7QUFDckI7O0FBRUE7RUFDRSxXQUFXO0VBQ1gsbUJBQW1CO0VBQ25CLGFBQWE7RUFDYixtQkFBbUI7RUFDbkIsdUJBQXVCO0VBQ3ZCLG1CQUFtQjtBQUNyQjs7QUFFQTtFQUNFLGVBQWU7RUFHZixnQ0FBZ0M7QUFDbEM7O0FBRUE7RUFDRSxZQUFZO0VBQ1osaUJBQWlCO0FBQ25CIiwiZmlsZSI6ImFwcC9yb3V0aW5lcy9yb3V0aW5lcy5jb21wb25lbnQuY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLm1haW4ge1xyXG4gIG1hcmdpbjogN3JlbSAwIDAgMDtcclxuICBib3gtc2l6aW5nOiBib3JkZXItYm94O1xyXG4gIGRpc3BsYXk6IGZsZXg7XHJcbiAgZmxleC1kaXJlY3Rpb246IGNvbHVtbjtcclxuICBqdXN0aWZ5LWNvbnRlbnQ6IGZsZXgtc3RhcnQ7XHJcbiAgYWxpZ24taXRlbXM6IGNlbnRlcjtcclxuICBhbGlnbi1jb250ZW50OiBzcGFjZS1hcm91bmQ7XHJcbiAgaGVpZ2h0OiAxMDB2aDtcclxufVxyXG5cclxuaDMucm91dGluZXMtaGVhZGVyIHtcclxuICB0ZXh0LXRyYW5zZm9ybTogdXBwZXJjYXNlO1xyXG59XHJcblxyXG4uYWRkLXJvdXRpbmUtY29udGFpbmVyIHtcclxuICB3aWR0aDogODB2dztcclxufVxyXG5cclxuLmFkZC1yb3V0aW5lLWNvbnRhaW5lciBidXR0b24ge1xyXG4gIHdpZHRoOiAxMDAlO1xyXG4gIGJhY2tncm91bmQ6IHdoaXRlO1xyXG4gIGNvbG9yOiBibGFjaztcclxuICAtd2Via2l0LWJveC1zaGFkb3c6IDAgMTBweCA2cHggLTZweCAjNzc3O1xyXG4gIC1tb3otYm94LXNoYWRvdzogMCAxMHB4IDZweCAtNnB4ICM3Nzc7XHJcbiAgYm94LXNoYWRvdzogMCAxMHB4IDZweCAtNnB4ICM3Nzc7XHJcbn1cclxuXHJcbi5yb3V0aW5lLWxpc3Qge1xyXG4gIG1hcmdpbjogLjVyZW0gMDtcclxuICBkaXNwbGF5OiBmbGV4O1xyXG4gIGZsZXgtZGlyZWN0aW9uOiBjb2x1bW47XHJcbiAganVzdGlmeS1jb250ZW50OiBjZW50ZXI7XHJcbiAgYWxpZ24taXRlbXM6IGNlbnRlcjtcclxuICAtd2Via2l0LWJveC1zaGFkb3c6IDAgMTBweCA2cHggLTZweCAjNzc3O1xyXG4gIC1tb3otYm94LXNoYWRvdzogMCAxMHB4IDZweCAtNnB4ICM3Nzc7XHJcbiAgYm94LXNoYWRvdzogMCAxMHB4IDZweCAtNnB4ICM3Nzc7XHJcbn1cclxuXHJcbi5yb3V0aW5lLWxpc3QtaXRlbSB7XHJcbiAgYmFja2dyb3VuZDogd2hpdGU7XHJcbiAgcGFkZGluZzogLjVyZW07XHJcbiAgZGlzcGxheTogZmxleDtcclxuICBmbGV4LWRpcmVjdGlvbjogY29sdW1uO1xyXG4gIGp1c3RpZnktY29udGVudDogY2VudGVyO1xyXG4gIGFsaWduLWl0ZW1zOiBjZW50ZXI7XHJcbn1cclxuXHJcbi5yb3V0aW5lLWxpc3QtaXRlbS1idXR0b24tZ3JvdXAge1xyXG4gIHdpZHRoOiAxMDAlO1xyXG4gIG1hcmdpbi1ib3R0b206IDFyZW07XHJcbiAgZGlzcGxheTogZmxleDtcclxuICBmbGV4LWRpcmVjdGlvbjogcm93O1xyXG4gIGp1c3RpZnktY29udGVudDogY2VudGVyO1xyXG4gIGFsaWduLWl0ZW1zOiBjZW50ZXI7XHJcbn1cclxuXHJcbi5yb3V0aW5lLWxpc3QtaXRlbS1idXR0b24tZ3JvdXAgYnV0dG9uIHtcclxuICBtYXJnaW46IDAgLjJyZW07XHJcbiAgLXdlYmtpdC1ib3gtc2hhZG93OiAwIDEwcHggNnB4IC02cHggIzc3NztcclxuICAtbW96LWJveC1zaGFkb3c6IDAgMTBweCA2cHggLTZweCAjNzc3O1xyXG4gIGJveC1zaGFkb3c6IDAgMTBweCA2cHggLTZweCAjNzc3O1xyXG59XHJcblxyXG4ucm91dGluZS1saXN0LWl0ZW0tYnV0dG9uLWdyb3VwX19lZGl0LWJ1dHRvbiB7XHJcbiAgY29sb3I6IHdoaXRlO1xyXG4gIGJhY2tncm91bmQ6IGJsYWNrO1xyXG59XHJcbiJdfQ== */"
+module.exports = ".main {\r\n  margin: 7rem 0 0 0;\r\n  box-sizing: border-box;\r\n  display: flex;\r\n  flex-direction: column;\r\n  justify-content: flex-start;\r\n  align-items: center;\r\n  align-content: space-around;\r\n  height: 100vh;\r\n}\r\n\r\nh3.routines-header {\r\n  text-transform: uppercase;\r\n}\r\n\r\n.add-routine-container {\r\n  width: 80vw;\r\n}\r\n\r\n.add-routine-container button {\r\n  width: 100%;\r\n  background: white;\r\n  color: black;\r\n  box-shadow: 0 10px 6px -6px #777;\r\n}\r\n\r\n.routine-list {\r\n  margin: .5rem 0;\r\n  display: flex;\r\n  flex-direction: column;\r\n  justify-content: center;\r\n  align-items: center;\r\n  box-shadow: 0 10px 6px -6px #777;\r\n}\r\n\r\n.routine-list-item {\r\n  background: white;\r\n  padding: 1.5rem 3rem;\r\n  display: flex;\r\n  flex-direction: column;\r\n  justify-content: center;\r\n  align-items: center;\r\n}\r\n\r\n.routine-list-item__routine-name {\r\n  text-align: center;\r\n  margin: 1rem;\r\n}\r\n\r\n.routine-list-item-button-group {\r\n  width: 100%;\r\n  margin-bottom: 1rem;\r\n  display: flex;\r\n  flex-direction: row;\r\n  justify-content: center;\r\n  align-items: center;\r\n}\r\n\r\n.routine-list-item-button-group button {\r\n  margin: 0 .2rem;\r\n  box-shadow: 0 10px 6px -6px #777;\r\n}\r\n\r\n.routine-list-item-button-group__edit-button {\r\n  color: white;\r\n  background: black;\r\n}\r\n\r\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImFwcC9yb3V0aW5lcy9yb3V0aW5lcy5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0VBQ0Usa0JBQWtCO0VBQ2xCLHNCQUFzQjtFQUN0QixhQUFhO0VBQ2Isc0JBQXNCO0VBQ3RCLDJCQUEyQjtFQUMzQixtQkFBbUI7RUFDbkIsMkJBQTJCO0VBQzNCLGFBQWE7QUFDZjs7QUFFQTtFQUNFLHlCQUF5QjtBQUMzQjs7QUFFQTtFQUNFLFdBQVc7QUFDYjs7QUFFQTtFQUNFLFdBQVc7RUFDWCxpQkFBaUI7RUFDakIsWUFBWTtFQUdaLGdDQUFnQztBQUNsQzs7QUFFQTtFQUNFLGVBQWU7RUFDZixhQUFhO0VBQ2Isc0JBQXNCO0VBQ3RCLHVCQUF1QjtFQUN2QixtQkFBbUI7RUFHbkIsZ0NBQWdDO0FBQ2xDOztBQUVBO0VBQ0UsaUJBQWlCO0VBQ2pCLG9CQUFvQjtFQUNwQixhQUFhO0VBQ2Isc0JBQXNCO0VBQ3RCLHVCQUF1QjtFQUN2QixtQkFBbUI7QUFDckI7O0FBRUE7RUFDRSxrQkFBa0I7RUFDbEIsWUFBWTtBQUNkOztBQUVBO0VBQ0UsV0FBVztFQUNYLG1CQUFtQjtFQUNuQixhQUFhO0VBQ2IsbUJBQW1CO0VBQ25CLHVCQUF1QjtFQUN2QixtQkFBbUI7QUFDckI7O0FBRUE7RUFDRSxlQUFlO0VBR2YsZ0NBQWdDO0FBQ2xDOztBQUVBO0VBQ0UsWUFBWTtFQUNaLGlCQUFpQjtBQUNuQiIsImZpbGUiOiJhcHAvcm91dGluZXMvcm91dGluZXMuY29tcG9uZW50LmNzcyIsInNvdXJjZXNDb250ZW50IjpbIi5tYWluIHtcclxuICBtYXJnaW46IDdyZW0gMCAwIDA7XHJcbiAgYm94LXNpemluZzogYm9yZGVyLWJveDtcclxuICBkaXNwbGF5OiBmbGV4O1xyXG4gIGZsZXgtZGlyZWN0aW9uOiBjb2x1bW47XHJcbiAganVzdGlmeS1jb250ZW50OiBmbGV4LXN0YXJ0O1xyXG4gIGFsaWduLWl0ZW1zOiBjZW50ZXI7XHJcbiAgYWxpZ24tY29udGVudDogc3BhY2UtYXJvdW5kO1xyXG4gIGhlaWdodDogMTAwdmg7XHJcbn1cclxuXHJcbmgzLnJvdXRpbmVzLWhlYWRlciB7XHJcbiAgdGV4dC10cmFuc2Zvcm06IHVwcGVyY2FzZTtcclxufVxyXG5cclxuLmFkZC1yb3V0aW5lLWNvbnRhaW5lciB7XHJcbiAgd2lkdGg6IDgwdnc7XHJcbn1cclxuXHJcbi5hZGQtcm91dGluZS1jb250YWluZXIgYnV0dG9uIHtcclxuICB3aWR0aDogMTAwJTtcclxuICBiYWNrZ3JvdW5kOiB3aGl0ZTtcclxuICBjb2xvcjogYmxhY2s7XHJcbiAgLXdlYmtpdC1ib3gtc2hhZG93OiAwIDEwcHggNnB4IC02cHggIzc3NztcclxuICAtbW96LWJveC1zaGFkb3c6IDAgMTBweCA2cHggLTZweCAjNzc3O1xyXG4gIGJveC1zaGFkb3c6IDAgMTBweCA2cHggLTZweCAjNzc3O1xyXG59XHJcblxyXG4ucm91dGluZS1saXN0IHtcclxuICBtYXJnaW46IC41cmVtIDA7XHJcbiAgZGlzcGxheTogZmxleDtcclxuICBmbGV4LWRpcmVjdGlvbjogY29sdW1uO1xyXG4gIGp1c3RpZnktY29udGVudDogY2VudGVyO1xyXG4gIGFsaWduLWl0ZW1zOiBjZW50ZXI7XHJcbiAgLXdlYmtpdC1ib3gtc2hhZG93OiAwIDEwcHggNnB4IC02cHggIzc3NztcclxuICAtbW96LWJveC1zaGFkb3c6IDAgMTBweCA2cHggLTZweCAjNzc3O1xyXG4gIGJveC1zaGFkb3c6IDAgMTBweCA2cHggLTZweCAjNzc3O1xyXG59XHJcblxyXG4ucm91dGluZS1saXN0LWl0ZW0ge1xyXG4gIGJhY2tncm91bmQ6IHdoaXRlO1xyXG4gIHBhZGRpbmc6IDEuNXJlbSAzcmVtO1xyXG4gIGRpc3BsYXk6IGZsZXg7XHJcbiAgZmxleC1kaXJlY3Rpb246IGNvbHVtbjtcclxuICBqdXN0aWZ5LWNvbnRlbnQ6IGNlbnRlcjtcclxuICBhbGlnbi1pdGVtczogY2VudGVyO1xyXG59XHJcblxyXG4ucm91dGluZS1saXN0LWl0ZW1fX3JvdXRpbmUtbmFtZSB7XHJcbiAgdGV4dC1hbGlnbjogY2VudGVyO1xyXG4gIG1hcmdpbjogMXJlbTtcclxufVxyXG5cclxuLnJvdXRpbmUtbGlzdC1pdGVtLWJ1dHRvbi1ncm91cCB7XHJcbiAgd2lkdGg6IDEwMCU7XHJcbiAgbWFyZ2luLWJvdHRvbTogMXJlbTtcclxuICBkaXNwbGF5OiBmbGV4O1xyXG4gIGZsZXgtZGlyZWN0aW9uOiByb3c7XHJcbiAganVzdGlmeS1jb250ZW50OiBjZW50ZXI7XHJcbiAgYWxpZ24taXRlbXM6IGNlbnRlcjtcclxufVxyXG5cclxuLnJvdXRpbmUtbGlzdC1pdGVtLWJ1dHRvbi1ncm91cCBidXR0b24ge1xyXG4gIG1hcmdpbjogMCAuMnJlbTtcclxuICAtd2Via2l0LWJveC1zaGFkb3c6IDAgMTBweCA2cHggLTZweCAjNzc3O1xyXG4gIC1tb3otYm94LXNoYWRvdzogMCAxMHB4IDZweCAtNnB4ICM3Nzc7XHJcbiAgYm94LXNoYWRvdzogMCAxMHB4IDZweCAtNnB4ICM3Nzc7XHJcbn1cclxuXHJcbi5yb3V0aW5lLWxpc3QtaXRlbS1idXR0b24tZ3JvdXBfX2VkaXQtYnV0dG9uIHtcclxuICBjb2xvcjogd2hpdGU7XHJcbiAgYmFja2dyb3VuZDogYmxhY2s7XHJcbn1cclxuIl19 */"
 
 /***/ }),
 
@@ -1480,7 +1399,7 @@ var LogRoutineService = /** @class */ (function () {
     }
     LogRoutineService.prototype.getWorkouts = function () {
         var _this = this;
-        this.http.get('http://localhost:8080/api/workouts')
+        this.http.get('api/workouts')
             .subscribe(function (workoutData) {
             _this.savedRoutines = workoutData.workouts;
             _this.savedRoutinesUpdated.next(_this.savedRoutines.slice());
@@ -1499,7 +1418,7 @@ var LogRoutineService = /** @class */ (function () {
                     case 1:
                         routine = _a.sent();
                         console.log(exercises[0]);
-                        this.http.post('http://localhost:8080/api/workouts', routine)
+                        this.http.post('api/workouts', routine)
                             .subscribe(function (responseData) {
                             _this.savedRoutines.push(routine);
                             _this.savedRoutinesUpdated.next(_this.savedRoutines.slice());
@@ -1510,12 +1429,9 @@ var LogRoutineService = /** @class */ (function () {
         });
     };
     LogRoutineService.prototype.deleteRoutine = function (workout) {
-        this.http.delete('http://localhost:8080/api/workouts/' + workout._id)
+        this.http.delete('api/workouts/' + workout._id)
             .subscribe(function (responseData) {
         });
-    };
-    LogRoutineService.prototype.ngOnDestroy = function () {
-        this.savedRoutinesUpdated.unsubscribe();
     };
     LogRoutineService = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_3__["Injectable"])({ providedIn: 'root' }),
@@ -1542,6 +1458,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm5/index.js");
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
 var __decorate = (undefined && undefined.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1555,16 +1472,18 @@ var __metadata = (undefined && undefined.__metadata) || function (k, v) {
 
 
 
+
 // @ts-ignore
 var RoutineService = /** @class */ (function () {
-    function RoutineService(http) {
+    function RoutineService(http, router) {
         this.http = http;
+        this.router = router;
         this.routines = [];
         this.routinesUpdated = new rxjs__WEBPACK_IMPORTED_MODULE_2__["Subject"]();
     }
     RoutineService.prototype.getRoutines = function () {
         var _this = this;
-        this.http.get('http://localhost:8080/api/routine')
+        this.http.get('api/routine')
             .subscribe(function (routineData) {
             _this.routines = routineData.routines;
             _this.routinesUpdated.next(_this.routines.slice());
@@ -1577,27 +1496,25 @@ var RoutineService = /** @class */ (function () {
         var _this = this;
         var routine = new _models_routine_model__WEBPACK_IMPORTED_MODULE_0__["Routine"](name, exercises, icon);
         console.log(exercises);
-        this.http.post('http://localhost:8080/api/routine', routine)
+        this.http.post('api/routine', routine)
             .subscribe(function (responseData) {
             _this.routines.push(routine);
             _this.routinesUpdated.next(_this.routines.slice());
+            _this.router.navigate(['/routines']);
         });
     };
     RoutineService.prototype.deleteRoutine = function (routineId) {
         var _this = this;
-        this.http.delete('http://localhost:8080/api/routine/' + routineId)
+        this.http.delete('api/routine/' + routineId)
             .subscribe(function () {
             var updatedRoutines = _this.routines.filter(function (routine) { return routine._id !== routineId; });
             _this.routines = updatedRoutines;
             _this.routinesUpdated.next(_this.routines.slice());
         });
     };
-    RoutineService.prototype.ngOnDestroy = function () {
-        this.routinesUpdated.unsubscribe();
-    };
     RoutineService = __decorate([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({ providedIn: 'root' }),
-        __metadata("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpClient"]])
+        __metadata("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_3__["HttpClient"], _angular_router__WEBPACK_IMPORTED_MODULE_4__["Router"]])
     ], RoutineService);
     return RoutineService;
 }());

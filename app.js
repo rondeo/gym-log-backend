@@ -135,7 +135,7 @@ app.delete("/api/workouts/:id", checkAuth, (req, res, next) => {
 });
 
 //UPLOAD AVATAR - argument for upload.single() ...('myAvatar') in this case... needs to match the name of the key for the file we append on the front end... see nav-bar.component.ts // the req.file means we are requesting a filetype of .file 
-app.post("/api/avatar", checkAuth, upload.single('myAvatar'), (req, res, next) => {
+app.post("/api/getUser", checkAuth, upload.single('myAvatar'), (req, res, next) => {
 	let oldAvatar;
 	User.findOne({email: req.userData.email})
 	.then( user => {
@@ -153,13 +153,14 @@ app.post("/api/avatar", checkAuth, upload.single('myAvatar'), (req, res, next) =
 });
 
 //GET AVATAR
-app.get("/api/avatar", checkAuth, (req, res, next) => {
+app.get("/api/getUser", checkAuth, (req, res, next) => {
 	console.log('Getting avatar...')
 	User.findOne({email: req.userData.email})
 	  .then(user => {
 		  res.status(200).json({
 			  message: "Saved Workouts fetched successfully!",
-			  avatar: user.avatar
+			  avatar: user.avatar,
+			  userName: user.userName
 		  })
 	  });
 });
@@ -170,8 +171,9 @@ app.post("/api/sign-up", (req, res, next) => {
 	  .then(hash => {
 		const user = new User ({
 		  email: req.body.email,
+		  userName: req.body.userName,
 		  password: hash,
-		  avatar: "https://images.app.goo.gl/mz2v9iemPun3UcdT7"
+		  avatar: "uploads\\gym-log-default-pic.png"
 		});
 		user.save()
 		  .then(result => {
