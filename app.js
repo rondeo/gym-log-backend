@@ -70,7 +70,7 @@ app.listen(port, () => {
 });
 
 //GET ROUTINES
-app.get("/api/routines", checkAuth, (req, res, next) => {
+app.get("/api/routine", checkAuth, (req, res, next) => {
 	Routine.find({creator: req.userData.userId})
 	  .then(documents => {
 		  res.status(200).json({
@@ -81,7 +81,7 @@ app.get("/api/routines", checkAuth, (req, res, next) => {
 });
 
 //SAVE ROUTINES
-app.post("/api/routines", checkAuth, (req, res, next) => {
+app.post("/api/routine", checkAuth, (req, res, next) => {
 	const workout = new Routine({
 	  name: req.body.name,
 	  exercises: req.body.exercises,
@@ -95,7 +95,7 @@ app.post("/api/routines", checkAuth, (req, res, next) => {
 })
 
 //DELETE ROUTINES
-app.delete("/api/routines/:id", checkAuth, (req, res, next) => {
+app.delete("/api/routine/:id", checkAuth, (req, res, next) => {
 	Routine.deleteOne({_id: req.params.id, creator: req.userData.userId}).then(result => {
 		res.status(200).json({message: "Post deleted!"});
 	})
