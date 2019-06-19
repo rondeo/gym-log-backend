@@ -154,7 +154,7 @@ app.post("/api/getUser", checkAuth, upload.single('myAvatar'), (req, res, next) 
 
 //GET AVATAR
 app.get("/api/getUser", checkAuth, (req, res, next) => {
-	console.log('Getting avatar...')
+	console.log('Getting user...')
 	User.findOne({email: req.userData.email})
 	  .then(user => {
 		  res.status(200).json({
